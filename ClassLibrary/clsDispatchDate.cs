@@ -2,9 +2,8 @@
 
 namespace ClassLibrary
 {
-    public class clsOrders
+    public class clsDispatchDate
     {
-        public bool Active { get; set; }
         public DateTime DateAdded { get; set; }
     }
 }
