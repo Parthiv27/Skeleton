@@ -27,7 +27,7 @@ namespace Testing4
         }
         public void DateAddedPropertyOK()
         {
-            clsDispatchDate AnDispatchDate = new clsDispatchDate();
+            clsOrders AnDispatchDate = new clsOrders();
             DateTime TestData = DateTime.Now.Date;
             AnDispatchDate.DateAdded = TestData;
             Assert.AreEqual(AnDispatchDate.DateAdded, TestData);
@@ -35,17 +35,17 @@ namespace Testing4
         [TestMethod]
         public void FirstNameOK()
         {
-            clsFirstName AnFirstName = new clsFirstName();
+            clsOrders AnFirstName = new clsOrders();
             string TestData = "Donald";
             AnFirstName.FirstName = TestData;     
         }
         [TestMethod]
         public void PostCodeOK()
         {
-            clsPostCode AnPostCode = new clsPostCode();
+            clsOrders AnPostCode = new clsOrders();
             string TestData = "DA12 5UB";
             AnPostCode.PostCode = TestData;
-            Assert.AreEqual(AnPostCode.PostCode, TestData);
+            Assert.AreEqual(AnPostCode.PostCode,  TestData);
         }
         
     }

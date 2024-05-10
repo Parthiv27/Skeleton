@@ -8,8 +8,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-        </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:TextBox ID="txtOrderID" runat="server" style="z-index: 1; left: 75px; top: 52px; position: absolute"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblOrderID" runat="server" style="z-index: 1; left: 10px; top: 53px; position: absolute; right: 1323px" Text="Order ID"></asp:Label>
+        </p>
     </form>
 </body>
 </html>
