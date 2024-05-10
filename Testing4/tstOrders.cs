@@ -47,6 +47,6 @@ namespace Testing4
             AnPostCode.PostCode = TestData;
             Assert.AreEqual(AnPostCode.PostCode, TestData);
         }
-
+        
     }
 }
