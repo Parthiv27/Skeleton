@@ -8,5 +8,7 @@ namespace ClassLibrary
         public string FirstName { get; set; }
         public string PostCode { get; set; }
         public DateTime DateAdded { get; set; }
+        public string Surname { get; set; }
+        public string Shoe { get; set; }
     }
 }

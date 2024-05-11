@@ -47,6 +47,20 @@ namespace Testing4
             AnPostCode.PostCode = TestData;
             Assert.AreEqual(AnPostCode.PostCode,  TestData);
         }
+        [TestMethod]
+        public void SurnameOK()
+        {
+            clsOrders AnSurname = new clsOrders();
+            string TestDate = "Jinadu";
+            AnSurname.Surname = TestData;
+        }
+        [TestMethod]
+        public void ShoeOK()
+        {
+            clsOrders AnShoe = new clsOrders();
+            string TestData = "Jordan 4s";
+            AnShoe.Shoe = TestData;
+        }
         
     }
 }
