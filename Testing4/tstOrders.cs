@@ -52,7 +52,7 @@ namespace Testing4
         {
             clsOrders AnSurname = new clsOrders();
             string TestDate = "Jinadu";
-            AnSurname.Surname = TestData;
+            AnSurname.Surname = TestDate;
         }
         [TestMethod]
         public void ShoeOK()
