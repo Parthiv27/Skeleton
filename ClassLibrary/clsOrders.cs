@@ -10,5 +10,11 @@ namespace ClassLibrary
         public DateTime DateAdded { get; set; }
         public string Surname { get; set; }
         public string Shoe { get; set; }
+
+        public bool Find(int orderID)
+        {
+            //always return true 
+            return true;
+        }
     }
 }

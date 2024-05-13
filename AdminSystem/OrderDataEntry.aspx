@@ -17,7 +17,6 @@
             <asp:Label ID="lblOrderID" runat="server" style="z-index: 1; left: 10px; top: 53px; position: absolute; right: 349px" Text="Order ID" height="19px" width="61px"></asp:Label>
             <asp:Label ID="lblShoeID" runat="server" height="19px" style="z-index: 1; left: 10px; top: 91px; position: absolute" Text="Shoe " width="61px"></asp:Label>
             <asp:TextBox ID="txtShoe" runat="server" height="22px" style="z-index: 1; left: 91px; top: 91px; position: absolute; width: 129px"></asp:TextBox>
-            <asp:Label ID="lblFirstnameID" runat="server" style="z-index: 1; left: 10px; top: 134px; position: absolute; height: 19px; bottom: 523px" Text="Firstname" width="61px"></asp:Label>
         </p>
         <p>
             <asp:TextBox ID="txtFirstname" runat="server" height="22px" OnTextChanged="TextBox1_TextChanged" style="z-index: 1; left: 90px; top: 135px; position: absolute; width: 129px"></asp:TextBox>
@@ -34,6 +33,7 @@
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 130px; top: 363px; position: absolute" Text="Cancel" />
     </form>
 </body>
-            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 53px; top: 361px; position: absolute" Text="OK" />
+            <asp:Label ID="lblFirstnameID" runat="server" style="z-index: 1; left: 10px; top: 134px; position: absolute; height: 19px; bottom: 523px" Text="Firstname" width="61px"></asp:Label>
         <asp:Label ID="lblSurnameID" runat="server" style="z-index: 1; left: 12px; position: absolute; height: 19px; width: 61px; right: 325px" Text="Surname"></asp:Label>
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 53px; top: 361px; position: absolute" Text="OK" />
 </html>
