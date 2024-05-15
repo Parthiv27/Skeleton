@@ -61,7 +61,7 @@ namespace Testing4
             string TestData = "Jordan 4s";
             AnShoe.Shoe = TestData;
         }
-        [testMethod]
+        [TestMethod]
         public void FindMethodOK()
         {         //create an instance of the class I want to create
             clsOrders AnOrders = new clsOrders();
@@ -74,6 +74,26 @@ namespace Testing4
             //test to see if the result is true
             Assert.IsTrue(found);
         }
+        [TestMethod]
+        public void testOrderIdFound()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnOrder = new clsOrders();
+            //create a boolean variable to record if the data is OK (assumer it is)
+            boolean OK = true;
+            //create some test data to use with the method
+            int32 OrderID = 21;
+            //invoke the method
+            Found = AnOrder.Find(OrderID);
+            //chech the Order ID
+            if (AnOrder.OrderID == 21)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.isTrue(OK);
+        }
+
         
     }
 }

@@ -13,7 +13,8 @@ namespace ClassLibrary
 
         public object Find(int orderID)
         {
-            throw new NotImplementedException();
+            //always return true
+            return true;
         }
     }
 }
