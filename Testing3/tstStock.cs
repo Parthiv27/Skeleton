@@ -17,6 +17,8 @@ namespace Testing3
             Assert.IsNotNull(AnStock);
         }
 
+        //PROPERTY TESTS!!!!!//
+
         [TestMethod]
         public void StockIDPropertyOK()
         {
@@ -120,15 +122,174 @@ namespace Testing3
 
             Found = AnStock.Find(StockId);
 
+            Assert.IsTrue(Found);
+
+        }
+
+        //FOUND TESTS!!!!!//
+
+        [TestMethod]
+
+        public void TestStockIdFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
             if (AnStock.StockId != 3)
             {
                 OK = false;
             }
 
-            Assert.IsTrue(Found);
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestProducttypeFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.Producttype != "sneaker")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+
+        public void TestSizeFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.Size != "5")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestStockQuantityFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.StockQuantity != 4)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestRestockneededFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.Restockneeded != true)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+
+        public void TestDaterestockedFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.Daterestocked != Convert.ToDateTime("15/05/2024"))
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
 
         }
-        
+
+
+        [TestMethod]
+
+        public void TestDiscontinuedFound()
+        {
+            clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.Discontinued != false)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+
+        }
+
+
+
+
 
 
 

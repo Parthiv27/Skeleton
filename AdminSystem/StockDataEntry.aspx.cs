@@ -36,7 +36,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnStock.Daterestocked = Convert.ToDateTime(DateTime.Now);
 
 
-       
+        
         
 
         Session["AnStock"] = AnStock;
