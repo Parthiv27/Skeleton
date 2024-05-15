@@ -7,6 +7,8 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        public bool OK { get; private set; }
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -106,6 +108,29 @@ namespace Testing3
             Assert.AreEqual(AnStock.Discontinued, TestData);
 
         }
+
+        [TestMethod]
+
+        public void FindMethodOK()
+        { clsStock AnStock = new clsStock();
+
+            Boolean Found = false;
+
+            Int32 StockId = 3;
+
+            Found = AnStock.Find(StockId);
+
+            if (AnStock.StockId != 3)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+        
+
+
 
     }
 
