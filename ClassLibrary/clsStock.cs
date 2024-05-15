@@ -11,7 +11,5 @@ namespace ClassLibrary
         public bool Restockneeded { get; set; }
         public DateTime Daterestocked { get; set; }
         public bool Discontinued { get; set; }
-
-
     }
 }
