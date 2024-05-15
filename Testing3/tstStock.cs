@@ -118,7 +118,7 @@ namespace Testing3
 
             Boolean Found = false;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
@@ -138,11 +138,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.StockId != 3)
+            if (AnStock.StockId != 6)
             {
                 OK = false;
             }
@@ -160,11 +160,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Producttype != "sneaker")
+            if (AnStock.Producttype != "slides")
             {
                 OK = false;
             }
@@ -183,11 +183,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Size != "5")
+            if (AnStock.Size != "2")
             {
                 OK = false;
             }
@@ -205,11 +205,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.StockQuantity != 4)
+            if (AnStock.StockQuantity != 10)
             {
                 OK = false;
             }
@@ -227,7 +227,7 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
@@ -250,11 +250,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Daterestocked != Convert.ToDateTime("15/05/2024"))
+            if (AnStock.Daterestocked != Convert.ToDateTime("15/04/2024"))
             {
                 OK = false;
             }
@@ -274,11 +274,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 3;
+            Int32 StockId = 6;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Discontinued != false)
+            if (AnStock.Discontinued != true)
             {
                 OK = false;
             }
@@ -286,11 +286,6 @@ namespace Testing3
             Assert.IsTrue(OK);
 
         }
-
-
-
-
-
 
 
     }
