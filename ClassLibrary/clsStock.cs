@@ -107,14 +107,35 @@ namespace ClassLibrary
 
         public bool Find(int StockId)
         {
-            mDissontinued = false;
-            mRestockneeded = true;
-            mStockQuantity = 4;
-            mSize = "5";
-            mProducttype = "sneaker";
-            mStockId = 3;
-            mDaterestocked = Convert.ToDateTime("15/05/2024");
-            return true;
+
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StockId", StockId);
+
+            DB.Execute("sproc_tblStock_FilterByStockId");
+
+            if (DB.Count == 1)
+
+            {
+                mStockId = Convert.ToInt32(DB.DataTable.Rows[0]["StockId"]);
+                mProducttype = Convert.ToString(DB.DataTable.Rows[0]["Producttype"]);
+                mSize = Convert.ToString(DB.DataTable.Rows[0]["Size"]);
+                mStockQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["StockQuantity"]);
+                mRestockneeded = Convert.ToBoolean(DB.DataTable.Rows[0]["Restockneeded"]);
+                mDaterestocked = Convert.ToDateTime(DB.DataTable.Rows[0]["Daterestocked"]);
+                mDissontinued = Convert.ToBoolean(DB.DataTable.Rows[0]["Discontinued"]);
+
+                return true;
+            }
+
+            else
+            { 
+
+                return false;
+            }
+   
+           
+
         }
     }
 }

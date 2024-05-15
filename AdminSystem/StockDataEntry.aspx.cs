@@ -45,4 +45,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("StockViewer.aspx");
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStock AnStock = new clsStock();
+
+        Int32 StockId;
+
+        Boolean Found = false;
+
+        StockId = Convert.ToInt32(txtStockId.Text);
+
+        Found = AnStock.Find(StockId);
+
+        if (Found == true)
+        {
+
+            txtProducttype.Text = AnStock.Producttype;
+            txtSize.Text = AnStock.Size;
+            chkRestockneeded.Checked = AnStock.Restockneeded;
+            txtDaterestocked.Text = AnStock.Daterestocked.ToString();
+            chkDiscontinued .Checked = AnStock.Discontinued;
+            txtStockQuantity.Text = AnStock.StockQuantity.ToString();
+
+
+
+
+
+
+
+
+        }
+    }
 }
