@@ -13,8 +13,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="lblStockID" runat="server" style="z-index: 1; left: 25px; top: 43px; position: absolute" Text="StockID" width="79px"></asp:Label>
-        <asp:TextBox ID="txtStockID" runat="server" style="z-index: 1; left: 155px; top: 36px; position: absolute"></asp:TextBox>
+        <asp:Label ID="lblStockId" runat="server" style="z-index: 1; left: 25px; top: 43px; position: absolute" Text="StockID" width="79px"></asp:Label>
+        <asp:TextBox ID="txtStockId" runat="server" style="z-index: 1; left: 155px; top: 36px; position: absolute"></asp:TextBox>
         <asp:TextBox ID="txtSize" runat="server" style="z-index: 1; left: 151px; top: 135px; position: absolute" width="168px"></asp:TextBox>
         <asp:Label ID="lblProducttype" runat="server" style="z-index: 1; left: 25px; top: 88px; position: absolute" Text="Product type" width="79px"></asp:Label>
         <asp:Label ID="lblStockQuantity" runat="server" style="z-index: 1; left: 25px; top: 193px; position: absolute; width: 104px;" Text="Stock Quantity"></asp:Label>
@@ -29,6 +29,7 @@
         <asp:CheckBox ID="chkDiscontinued" runat="server" style="z-index: 1; left: 239px; top: 354px; position: absolute; width: 122px;" Text="Discontinued" />
             <asp:Label ID="lblDiscontinued" runat="server" style="z-index: 1; left: 24px; top: 316px; position: absolute; width: 96px" Text="Discontinued"></asp:Label>
             <asp:TextBox ID="txtDiscontinued" runat="server" style="z-index: 1; left: 131px; top: 314px; position: absolute; width: 183px"></asp:TextBox>
+            <asp:CheckBox ID="chkRestockneeded" runat="server" style="z-index: 1; left: 356px; top: 353px; position: absolute" Text="Restockneeded" />
         </p>
         <asp:Button ID="lblOK" runat="server" style="z-index: 1; left: 29px; top: 354px; position: absolute" Text="OK" OnClick="lblOK_Click" />
         <asp:Button ID="lblCancel" runat="server" style="z-index: 1; left: 109px; top: 354px; position: absolute" Text="Cancel" OnClick="lblCancel_Click" />

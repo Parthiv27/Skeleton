@@ -14,6 +14,12 @@ public partial class _1Viewer : System.Web.UI.Page
 
         AnStock = (clsStock)Session["AnStock"];
 
-        Response.Write(AnStock.StockID);
+        Response.Write(AnStock.StockId);
+        Response.Write(AnStock.Producttype);
+        Response.Write(AnStock.Size);
+        Response.Write(AnStock.StockQuantity);
+        Response.Write(AnStock.Restockneeded);
+        Response.Write(AnStock.Daterestocked);
+        Response.Write(AnStock.Discontinued);
     }
 }
