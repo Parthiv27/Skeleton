@@ -10,5 +10,10 @@ namespace ClassLibrary
         public DateTime DateAdded { get; set; }
         public string Surname { get; set; }
         public string Shoe { get; set; }
+
+        public object Find(int orderID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
