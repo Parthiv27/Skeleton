@@ -61,7 +61,7 @@ namespace Testing4
             string TestData = "Jordan 4s";
             AnShoe.Shoe = TestData;
         }
-        [testMethod]
+        [TestMethod]
         public void FindMethodOK()
         {         //create an instance of the class I want to create
             clsOrders AnOrders = new clsOrders();

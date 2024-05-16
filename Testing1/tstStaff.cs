@@ -7,6 +7,13 @@ namespace Testing1
     [TestClass]
     public class tstStaff
     {
+        public int FirstName { get; private set; }
+        public object txtFirstName { get; private set; }
+        public object chkActive { get; private set; }
+        public int Email { get; private set; }
+        public int LastName { get; private set; }
+        public int Checked { get; private set; }
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -105,9 +112,184 @@ namespace Testing1
             //Test to see that the two values are the same
             Assert.AreEqual(AnStaff.Salary, TestData);
         }
+
+        [TestMethod]
+        public void FindMethoOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //Create some test data to use with the method
+            Int32 StaffId = 21;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //test to see if the result is true 
+            Assert.IsTrue(Found);
+        }
+
+        /******************PROPERTY DATA TESTS******************/
+        /******************PROPERTY DATA TESTS******************/
+        /******************PROPERTY DATA TESTS******************/
+
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the Staff id property
+            if (AnStaff.StaffId != 2)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestFirstNameFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the Staff firstname property
+            if (AnStaff.FirstName != "Jeo")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestLastNameFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the lastname property
+            if (AnStaff.LastName != "Smith")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestEmailFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the email property
+            if (AnStaff.Email != "JeoSmith12@gmail.com")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestHireDateFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the  hiredate property
+            if (AnStaff.HireDate != Convert.ToDateTime("23/10/2021"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff active  property
+            if (AnStaff.Active != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff salary  property
+            if (AnStaff.Salary != Convert.ToDecimal("30000")) 
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
     }
 }
-
-
-    
-
