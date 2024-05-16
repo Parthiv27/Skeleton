@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace ClassLibrary
 {
@@ -50,7 +51,7 @@ namespace ClassLibrary
         private Int32 mStockQuantity;
         public Int32 StockQuantity
         {
-           get
+            get
             {
                 return mStockQuantity;
             }
@@ -82,8 +83,8 @@ namespace ClassLibrary
                 return mDaterestocked;
             }
 
-            set 
-            { 
+            set
+            {
                 mDaterestocked = value;
             }
         }
@@ -92,15 +93,15 @@ namespace ClassLibrary
         private Boolean mDissontinued;
         public bool Discontinued
         {
-            get 
-            { 
+            get
+            {
                 return mDissontinued;
             }
             set
             {
                 mDissontinued = value;
             }
-            
+
         }
 
 
@@ -129,15 +130,85 @@ namespace ClassLibrary
             }
 
             else
-            { 
+            {
 
                 return false;
             }
-   
-           
+
+
 
         }
+
+        public string Valid(string Producttype, string Size, string Daterestocked, string StockQuantity)
+        {
+            String Error = "";
+
+            DateTime DateTemp;
+
+            if (Producttype.Length == 0)
+            {
+                Error = Error + "The Product type may not be blank : ";
+            }
+
+            if (Producttype.Length > 20)
+            {
+                Error = Error + "The Product type must not be less than 20 characters : ";
+            }
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(Daterestocked);
+
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch (FormatException)
+            {
+                Error = Error + "Invalid date format : ";
+            }
+
+            if (Size.Length == 0)
+            {
+                Error = Error + "The Size may not be blank : ";
+            }
+
+            if (Size.Length > 10)
+            {
+                Error = Error + "The Size must be less than 10 characters : ";
+            }
+
+           
+
+            if(StockQuantity.Length == 0)
+            {
+                Error = Error + "The Stock Quantity may not be blank : ";
+            }
+
+            if(StockQuantity.Length > 50)
+            {
+                Error = Error + "The Stock Quantity must be less than 50 characters : ";
+            }
+
+            return Error;
+        }
+
+
+
+
+
+
+
+
+
     }
+
 }
         
             
