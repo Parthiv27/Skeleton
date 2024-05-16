@@ -27,9 +27,11 @@
         <asp:CheckBox ID="chkDiscontinued" runat="server" style="z-index: 1; left: 239px; top: 354px; position: absolute; width: 122px;" Text="Discontinued" />
             <asp:CheckBox ID="chkRestockneeded" runat="server" style="z-index: 1; left: 356px; top: 353px; position: absolute" Text="Restockneeded" />
         </p>
-        <asp:Button ID="lblOK" runat="server" style="z-index: 1; left: 29px; top: 354px; position: absolute" Text="OK" OnClick="lblOK_Click" />
-        <asp:Button ID="lblCancel" runat="server" style="z-index: 1; left: 109px; top: 354px; position: absolute" Text="Cancel" OnClick="lblCancel_Click" />
+        
+         <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 29px; top: 354px; position: absolute" Text="OK" OnClick="btnOK_Click" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 109px; top: 354px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 419px; top: 38px; position: absolute" Text="Find" />
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 20px; top: 285px; position: absolute"></asp:Label>
     </form>
 </body>
 </html>
