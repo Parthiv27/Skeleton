@@ -13,38 +13,52 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
- 
 
 
-    protected void lblCancel_Click(object sender, EventArgs e)
-    {
 
-    }
-
-    protected void lblOK_Click(object sender, EventArgs e)
+    protected void btnOK_Click(object sender, EventArgs e)
     {
 
         clsStock AnStock = new clsStock();
 
-       
-        AnStock.StockId = Convert.ToInt32(txtStockId.Text);
-        AnStock.Producttype = txtProducttype.Text;
-        AnStock.Size = txtSize.Text;
-        AnStock.Restockneeded = chkRestockneeded.Checked;
-        AnStock.Discontinued = chkDiscontinued.Checked;
-        AnStock.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
-        AnStock.Daterestocked = Convert.ToDateTime(DateTime.Now);
+        string Producttype = txtProducttype.Text;
+        string Size = txtSize.Text;
+        string StockQuantity = txtStockQuantity.Text;
+        string Daterestocked = txtDaterestocked.Text;
+        string StockId = txtStockId.Text;
+        string Restockneeded = chkRestockneeded.Text;
+        string Discontinued = chkDiscontinued.Text;
+        string Error = "";
+        Error = AnStock.Valid(Producttype, Size, StockQuantity, Daterestocked);
+        if (Error == "")
+        {
+            AnStock.Producttype = Producttype;
+            AnStock.Size = Size;
+            AnStock.StockQuantity = Convert.ToInt32(StockQuantity);
+            AnStock.Daterestocked = Convert.ToDateTime(Daterestocked);
+
+            Session["AnStock"] = AnStock;
+
+            //navigate user to view page
+            Response.Redirect("StockViewer.aspx");
 
 
-        
-        
+        }
 
-        Session["AnStock"] = AnStock;
+        else
+        {
+            lblError.Text = Error;
+        }
 
-        //navigate user to view page
-        Response.Redirect("StockViewer.aspx");
+
+
+
+
+
+
 
     }
+
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -76,5 +90,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         }
+    }
+
+
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
