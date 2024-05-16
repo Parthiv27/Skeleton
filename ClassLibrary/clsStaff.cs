@@ -131,18 +131,36 @@ namespace ClassLibrary
         }
 
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            //set the private data memebers to the test data value
-            mStaffId = 2;
-            mFirstName = "Jeo";
-            mLastName = "Smith";
-            mEmail = "JeoSmith12@gmail.com";
-            mHireDate = Convert.ToDateTime("23/10/2021");
-            mActive = true;
-            mSalary = Convert.ToDecimal("30000");
-            //always return true
-            return true;
+            //creat an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the paramter  for the Staff id  to search for 
+            DB.AddParameter("@StaffId", StaffId);
+            //execute the store procedure 
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            //if one record is found (there shoudl be either 1 or zero)
+            if (DB.Count == 1)
+
+            {
+
+                //COPY THE DATA FROM THE DATABASE TO PRIVATE DATA MEMEBERS
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mFirstName = Convert.ToString(DB.DataTable.Rows[0]["FirstName"]);
+                mLastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mHireDate = Convert.ToDateTime(DB.DataTable.Rows[0]["HireDate"]); ;
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
+                //always return true
+                return true;
+            }
+            //if no record was found 
+            else
+            {
+                //retuen false indicating there is a prblem
+                return false;
+            }
         }
     }
 }
