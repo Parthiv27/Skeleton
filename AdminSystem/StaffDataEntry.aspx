@@ -28,6 +28,7 @@
         <asp:TextBox ID="txtSalary" runat="server" style="z-index: 1; left: 180px; top: 275px; position: absolute" width="128px" height="22px"></asp:TextBox>
         <p>
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 22px; top: 382px; position: absolute; bottom: 213px;" width="77px"></asp:Label>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 391px; top: 57px; position: absolute; width: 79px; height: 35px" Text="Find" />
         </p>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 27px; top: 428px; position: absolute" Text="OK" width="77px" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 145px; top: 428px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
