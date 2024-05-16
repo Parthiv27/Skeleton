@@ -36,6 +36,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //navigate  to the  view page 
         Response.Redirect("StaffViewer.aspx");
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
 }
 
  
