@@ -8,6 +8,8 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    public object txtActive { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -39,6 +41,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the Staff class
+        clsStaff AnStaff = new clsStaff();
+        //create a variable to store primary key
+        Int32 StaffId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key enterd by the user
+        StaffId = Convert.ToInt32(txtStaffId.Text);
+        //Find the record 
+        Found = AnStaff.Find(StaffId);
+        //if Found
+        if (Found == true)
+        {
+            //display the value of properties in the form 
+            txtStaffId.Text = AnStaff.StaffId.ToString();
+            txtFirstName.Text = AnStaff.FirstName;
+            txtLastName.Text = AnStaff.LastName;    
+            txtEmail.Text = AnStaff.Email;
+            txtHireDate.Text = AnStaff.HireDate.ToString();
+            chkActive.Checked = AnStaff.Active;
+            txtSalary.Text = AnStaff.Salary.ToString();  
+
+        }
+
 
     }
 }

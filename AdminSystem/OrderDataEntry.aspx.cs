@@ -22,17 +22,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //reatec a new instance of clsOrders
         clsOrders AnOrders = new clsOrders ();
-        // capture the Order
-        AnOrders.PostCode = txtPostCode.Text;
-        // capture Firstname 
-        AnOrders.FirstName = txtFirstname.Text;
-        // capture Surname
-        AnOrders.Surname = txtSurname.Text;
+        // capture CustomerName 
+        AnOrders.CustomerName = txtCustomerName.Text;
         //capture Shoe
-        AnOrders.Shoe = txtShoe.Text;
+        AnOrders.StockItem = txtStockItem.Text;
         //store the order in the session objective
         Session["AnOrders"]  = AnOrders;
         //navigate to the view page
         Response.Redirect("OrderViewer");
+        AnOrders.DispatchDate = Convert.ToDateTime(clndrDispatchDate.SelectedDate);
     }
 }
