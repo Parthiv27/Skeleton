@@ -107,7 +107,18 @@ namespace Testing4
             {
                 OK = false;
             }
-
+            [testMethod]
+            public void ValidMethodOK()
+            {
+                //create an instance of the class we want to create 
+                clsOrders AnCustomerName = new clsOrders();
+                //string variable to store any error message
+                string Error = "";
+                //invoke method
+                Error= AnCustomerName.(Valid(Dispatched,CustomerName,DispatcheDate,Price);
+                //test to see that the result is correct
+                Assert.AreEqual(Error, "");
+            }
         }
         
     }

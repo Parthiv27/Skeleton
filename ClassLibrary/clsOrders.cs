@@ -125,8 +125,18 @@ namespace ClassLibrary
             //always return true
             return true;
                 }
- 
+
+        //funtion for the public validation method
+        public string Valid(Boolean Dispatched,
+                            string Price,
+                            string CustomerName,
+                            string Description,
+                            DateTime DispatchDate);
+        //this function accepts 5 paramters for validation
+        //the function returns a string containing any error message
+        // if no errors found then a blank string is returned
         
         
+
     }
 }
