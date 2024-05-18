@@ -247,5 +247,10 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
+
+        public string Valid(string firstName, string lastName, string email, DateTime hireDate, object salary)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
