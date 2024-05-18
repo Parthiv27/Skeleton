@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -21,7 +22,7 @@ namespace ClassLibrary
                 mStaffId = value;
             }
         }
-            //private data member for the FirstName property
+        //private data member for the FirstName property
         private String mFirstName;
 
         //FirstName public property
@@ -161,6 +162,90 @@ namespace ClassLibrary
                 //retuen false indicating there is a prblem
                 return false;
             }
+        }
+
+        public string Valid(string firstName, string lastName, string email, string hireDate, string salary)
+        {
+
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //if the firstname is blank
+            if (firstName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The firstname may not be blank : ";
+            }
+            //if the house no is greater than 6 characters
+            if (firstName.Length > 25)
+            {
+                //record the error
+                Error = Error + "The firstname must be less than 25 characters : ";
+            }
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statement
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+                //copy the hiredate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(hireDate);
+                if (DateTemp < DateComp) //compare dateAdded with Date
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            //is the last name blank
+            if (lastName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The lastname may not be blank : ";
+            }
+
+            //if the last name is too long
+            if (lastName.Length > 25)
+            {
+                //record the error
+                Error = Error + "The lastname must be less than 25 characters : ";
+            }
+            //is the email blank
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email may not be blank : ";
+            }
+            //if the email is too long
+            if (email.Length > 50)
+            {
+                //record the error
+                Error = Error + "The email must be less than 50 characters : ";
+            }
+            //is the salary amount is blank
+            if (salary.Length == 0)
+            {
+                //record the error
+                Error = Error + "The salary amount may not be blank : ";
+            }
+            //if the salary number is too long
+            if (salary.Length > 50)
+            {
+                //record the error
+                Error = Error + "The salary must be deimalc number : ";
+            }
+            //return any error messages
+            return Error;
         }
     }
 }
