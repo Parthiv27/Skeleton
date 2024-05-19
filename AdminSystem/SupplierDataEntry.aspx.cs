@@ -29,6 +29,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
+        clsSupplier ASupplier = new clsSupplier();
+        Int32 SupplierID;
+        Boolean Found = false;
 
+        SupplierID = Convert.ToInt32(txtSupplierID.Text);
+        Found = ASupplier.Find(SupplierID);
+
+        if (Found == true)
+        {
+            txtName.Text = ASupplier.SupplierName;
+            txtEmail.Text = ASupplier.Email;
+            txtPhone.Text = ASupplier.Phone;
+            txtDateReg.Text = ASupplier.DateReg.ToString();
+            chkActive.Checked = ASupplier.Active;
+        }
     }
 }
