@@ -36,13 +36,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStock.Size = Size;
             AnStock.StockQuantity = Convert.ToInt32(StockQuantity);
             AnStock.Daterestocked = Convert.ToDateTime(Daterestocked);
+            AnStock.Restockneeded = chkRestockneeded.Checked;
+            AnStock.Discontinued = chkDiscontinued.Checked;
 
-            Session["AnStock"] = AnStock;
+            clsStockCollection StockList = new clsStockCollection();
 
-            //navigate user to view page
-            Response.Redirect("StockViewer.aspx");
+            StockList.ThisStock = AnStock;
 
+            StockList.Add();
 
+            Response.Redirect("StockList.aspx");
         }
 
         else
