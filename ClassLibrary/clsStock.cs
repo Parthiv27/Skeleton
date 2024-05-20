@@ -90,16 +90,16 @@ namespace ClassLibrary
         }
 
 
-        private Boolean mDissontinued;
+        private Boolean mDiscontinued;
         public bool Discontinued
         {
             get
             {
-                return mDissontinued;
+                return mDiscontinued;
             }
             set
             {
-                mDissontinued = value;
+                mDiscontinued = value;
             }
 
         }
@@ -124,7 +124,7 @@ namespace ClassLibrary
                 mStockQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["StockQuantity"]);
                 mRestockneeded = Convert.ToBoolean(DB.DataTable.Rows[0]["Restockneeded"]);
                 mDaterestocked = Convert.ToDateTime(DB.DataTable.Rows[0]["Daterestocked"]);
-                mDissontinued = Convert.ToBoolean(DB.DataTable.Rows[0]["Discontinued"]);
+                mDiscontinued = Convert.ToBoolean(DB.DataTable.Rows[0]["Discontinued"]);
 
                 return true;
             }
@@ -145,6 +145,7 @@ namespace ClassLibrary
 
             DateTime DateTemp;
 
+
             if (Producttype.Length == 0)
             {
                 Error = Error + "The Product type may not be blank : ";
@@ -154,24 +155,25 @@ namespace ClassLibrary
             {
                 Error = Error + "The Product type must not be less than 20 characters : ";
             }
-
+            DateTime DateComp = DateTime.Now.Date;
             try
             {
-                DateTemp = Convert.ToDateTime(Daterestocked);
 
-                if (DateTemp < DateTime.Now.Date)
+                DateTemp = DateTime.ParseExact(Daterestocked, "dd/MM/yyyy", null);
+                if (DateTemp < DateComp.AddYears(-100))
                 {
-                    Error = Error + "The date cannot be in the past : ";
+                    Error += "The date cannot be more than 100 years in the past : ";
+
                 }
 
-                if (DateTemp > DateTime.Now.Date)
+                if (DateTemp > DateComp)
                 {
                     Error = Error + "The date cannot be in the future : ";
                 }
             }
             catch (FormatException)
             {
-                Error = Error + "Invalid date format : ";
+                Error = Error + "The date was not a valid date : ";
             }
 
             if (Size.Length == 0)
@@ -184,14 +186,14 @@ namespace ClassLibrary
                 Error = Error + "The Size must be less than 10 characters : ";
             }
 
-           
 
-            if(StockQuantity.Length == 0)
+
+            if (StockQuantity.Length == 0)
             {
                 Error = Error + "The Stock Quantity may not be blank : ";
             }
 
-            if(StockQuantity.Length > 50)
+            if (StockQuantity.Length > 50)
             {
                 Error = Error + "The Stock Quantity must be less than 50 characters : ";
             }

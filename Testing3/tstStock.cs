@@ -11,9 +11,9 @@ namespace Testing3
         string Producttype = "sneaker";
         string Size = "3";
         string StockQuantity = "4";
-        string Restockneeded = "true";
+        
         string Daterestocked = DateTime.Now.ToShortDateString();
-        string Discontinued = "false";
+        
 
 
 
@@ -441,6 +441,7 @@ namespace Testing3
 
         // VALID Daterestocked tests
 
+
         [TestMethod]
 
         public void DaterestockedExtremeMin()
@@ -450,17 +451,13 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate;
+            DateTime TestDate = DateTime.Now.Date.AddYears(-100);
 
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(-100);
-
-            string Daterestocked = TestDate.ToString();
+            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
 
         }
 
@@ -473,17 +470,13 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate;
+            DateTime TestDate = DateTime.Now.Date.AddDays(-1);
 
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddDays(-1);
-
-            string Daterestocked = TestDate.ToString();
+            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
 
         }
 
@@ -496,11 +489,9 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate;
+            DateTime TestDate = DateTime.Now.Date;
 
-            TestDate = DateTime.Now.Date;
-
-            string Daterestocked = TestDate.ToString();
+            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -517,13 +508,9 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate;
+            DateTime TestDate = DateTime.Now.Date.AddDays(1);
 
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddDays(1);
-
-            string Daterestocked = TestDate.ToString();
+            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -540,13 +527,9 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate;
+            DateTime TestDate = DateTime.Now.Date.AddYears(100);
 
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(100);
-
-            string Daterestocked = TestDate.ToString();
+            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -570,6 +553,9 @@ namespace Testing3
             Assert.AreNotEqual(Error, "");
 
         }
+
+
+
 
         // VALID Size tests
 
