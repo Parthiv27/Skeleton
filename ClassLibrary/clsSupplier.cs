@@ -109,5 +109,45 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string supplierName, string email, string phone, string dateReg, bool active)
+        {
+            String Error = "";
+            DateTime cc;
+            if(supplierName.Length == 0)
+            {
+                Error = Error + "Name cant be empty.";
+            }
+            if(supplierName.Length >= 21)
+            {
+                Error = Error +"Name must be smaller.";
+            }
+            if(phone.Length <= 5)
+            {
+                Error += "Please Enter a Valid Phone number.";
+            }
+            if(phone.Length >= 16)
+            {
+                Error += "Phone number cant be 16 Character Long.";
+            }
+            try
+            {
+                cc = Convert.ToDateTime(dateReg);
+                if (cc < DateTime.Now.Date)
+                {
+                    Error = Error + "Date cannot be in the past \n";
+                }
+                if (cc > DateTime.Now.Date)
+                {
+                    Error = Error + "Date cannot be in the future. \n";
+                }
+            }
+            catch
+            {
+                Error = Error + "The Date is not in a Valid Format.\n";
+            }
+
+            return Error;
+        }
     }
 }
