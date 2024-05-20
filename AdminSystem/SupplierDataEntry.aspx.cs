@@ -16,15 +16,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsSupplier ASupplier = new clsSupplier();
-        ASupplier.SupplierID = Convert.ToInt32(txtSupplierID.Text);
-        ASupplier.SupplierName = txtName.Text;
-        ASupplier.Email = txtEmail.Text;
-        ASupplier.Phone = txtPhone.Text;
-        ASupplier.DateReg = Convert.ToDateTime(txtDateReg.Text);
-        ASupplier.Active = Convert.ToBoolean(chkActive.Checked);
+        String SupplierID = txtSupplierID.Text;
+        String SupplierName = txtName.Text;
+        String Email = txtEmail.Text;
+        String Phone = txtPhone.Text;
+        String DateReg = txtDateReg.Text;
+        bool Active = chkActive.Checked;
 
-        Session["ASupplier"] = ASupplier;
-        Response.Redirect("SupplierViewer.aspx");
+
+        string Error = "";
+        Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+        if (Error == "")
+        {
+            ASupplier.SupplierName = SupplierName;
+            ASupplier.Email = Email;
+            ASupplier.Phone = Phone;
+            ASupplier.DateReg = Convert.ToDateTime(DateReg);
+            ASupplier.Active= Convert.ToBoolean(Active);
+
+            Session["ASupplier"] = ASupplier;
+            Response.Redirect("SupplierList.aspx");
+
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
