@@ -99,8 +99,8 @@ namespace ClassLibrary
                 Description = value;
             }
         }
-
-        public bool Find(int OrderID)
+        /********* FIND METHOD ************/
+            public bool Find(int OrderID)
                 {
             //create an instance of data connection
             clsDataConnection DB = new clsDataConnection();
@@ -125,7 +125,15 @@ namespace ClassLibrary
             //always return true
             return true;
                 }
- 
+            //function for the public validation method
+            public string Valid(string Dispatched,
+                                string Price,
+                                string Customername,
+                                DateTime DispatchDate,
+                                string StockItem,)
+            //this funcation accpets 5 parameters for the validation
+            //the function returns a string containing any error message
+            //if no errors found then a blank string is returned
         
         
     }

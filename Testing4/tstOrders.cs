@@ -8,6 +8,13 @@ namespace Testing4
     [TestClass]
     public class tstOrders
     {
+        //good test data
+        //create some test data to pass the method
+        string Dispatched = "yes";
+        string DispatcheDate = DateTime.Now.ToShortDateString();
+        string Price = "129.99";
+        string StockItem = "panda dunks";
+        string CustomerName = "jaden smith";
         public object AnCustomerName { get; private set; }
         public object AnStockItem { get; private set; }
 
@@ -107,8 +114,20 @@ namespace Testing4
             {
                 OK = false;
             }
+        }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnOrders = new clsOrders();
+            //string variable to store any error message
+            string Error = "";
+            //invoke the method
+            Error = AnOrders.Valid(Dispatched,DispatchDate,Price,StockItem,CustomerName);
+            //test to see that the refuls is correct
 
         }
-        
+
+
     }
 }
