@@ -62,14 +62,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStaff.LastName = lastName;
             AnStaff.Email = email;
             AnStaff.HireDate = Convert.ToDateTime(hireDate);
-            AnStaff.Active = active;
+            AnStaff.Active = chkActive.Checked;
             AnStaff.Salary = Convert.ToDecimal(salary);
-
-            //store the AnStaff object in the session object
-            Session["AnStaff"] = AnStaff;
-
+            //create a new instance of stafff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set the thisstaff property
+            StaffList.ThisStaff = AnStaff;
+            //add the new record
+            StaffList.Add();
             //navigate to the view page
-            Response.Redirect("StaffViewer.aspx");
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
