@@ -192,7 +192,8 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(hireDate);
                 if (DateTemp < DateComp) //compare dateAdded with Date
                 {
-                    
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateComp)
