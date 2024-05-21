@@ -70,7 +70,7 @@ namespace Testing2
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            ACustomer.HireDate = TestData;
+            ACustomer.DateJoined = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(ACustomer.HireDate, TestData);
 
