@@ -79,7 +79,7 @@ namespace Testing4
         }
 
 
-        
+
 
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace Testing4
             Found = AnDispatchDate.Find(OrderID);
             //check the dispatch date property
             if (AnDispatchDate.DispatchDate != Convert.ToDateTime("02/06/2004"))
-                //always return true
+            //always return true
             {
                 OK = false;
             }
@@ -123,7 +123,7 @@ namespace Testing4
             //string variable to store any error message
             string Error = "";
             //invoke the method
-            Error = AnOrders.Valid(Dispatched,DispatchDate,Price,StockItem,CustomerName);
+            Error = AnOrders.Valid(Dispatched, DispatchDate, Price, StockItem, CustomerName);
             //test to see that the refuls is correct
         }
         [TestMethod]
@@ -169,6 +169,96 @@ namespace Testing4
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void PriceMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnPrice = new clsOrders();
+            //string c=variable to store any error message
+            string Error = "";
+            //create some test data to pass to the method
+            string Price = ""; //this method should trigger an error
+            //invoke a method
+            Error = AnPrice.Valid(Dispatched, CustomerName, DispatcheDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [testMethod]
+        public void PriceMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnPrice = new clsOrders();
+            //string variable to store any error message 
+            String Error = " ";
+            //create some test data to pass to the method
+            string Price = "aa"; //this should be ok
+            //invoke the method
+            Error = AnPrice.Valid(Dispatched, CustomerName, DispatcheDate);
+            //test to see that the reult is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMax()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnPrice = new clsOrders();
+            //string variable to store any error message 
+            String Error = "";
+            //create some test data to pass to the method
+            string Price = "aaaaa"; //this should be ok
+            //invoke the method
+            Error = AnPrice.Valid(Dispatched, CustomerName, DispatcheDate);
+            //test to see that the reulst is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrders AnPrice = new clsOrders();
+            //string variable to store any error message 
+            String Error = "";
+            //create some test data to pass to the method
+            string Price = "aaaaa"; // this should be ok 
+            //invoke the method 
+            Error = AnPrice.Valid(Dispatched, CustomerName, DispatcheDate);
+        }
+        [TestMethod]
+        public void PriceExtremeMax()
+        {
+            //create an instance of the class we want to create 
+            clsOrders AnPrice = new clsOrders();
+            //string variable to store any error message 
+            String Error = "";
+            //create some test data to pass to the method 
+            string Price = "";
+            Price = Price.PadRight(500, 'a'); //this shoud fail
+                                              //invoke the method
+            Error = AnPrice.Valid(Dispatched, CustomerName, DispatcheDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DispatchDateExtremeMin()
+        {
+            //create an insatcne of the class we want to create
+            clsOrders AnDispatchDate = new clsOrders();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test data
+            DateAdded TestDate;
+            //set the date to whatever the date is less 100 years
+            TestDate = DateAdded.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable 
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnDispatchDate.Valid(Dispatched, CustomerName, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+       
 
     }
 }
