@@ -133,12 +133,14 @@ namespace Testing4
             clsOrders AnOrder = new clsOrders();
             //create a boolean variable to store the result
             Boolean Found = false;
+            //create a boolean variable variable to record if
+            Boolean OK = true;
             //create some test data to use with the method
-            int32 OrderID = 8;
+            int32 OrderID = 2;
             //invoke method
             Found = AnOrder.Find(OrderID);
             //check the order ID property
-            if (AnOrder.OrderID != 8)
+            if (AnOrder.OrderID != 2)
             {
                 OK = false;
             }
@@ -146,7 +148,27 @@ namespace Testing4
             Assert.IsTrue(OK);
 
         }
-     
+        [TestMethod]
+        public void testPriceFound()
+        {
+            //create an instance of the class we want 
+            clsOrders AnPrice = new clsOrders();
+            //create a boolean variable to store the reulst
+            Boolean Found = false;
+            //create a boolean variable to record if data
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 OrderID = 2;
+            //invoke the method
+            Found = AnPrice.Find(OrderID);
+            //check the price property
+            if (AnPrice.amount != "199.99")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
 
     }
 }

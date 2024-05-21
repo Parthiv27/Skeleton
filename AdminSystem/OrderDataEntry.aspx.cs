@@ -32,4 +32,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("OrderViewer");
         AnOrders.DispatchDate = Convert.ToDateTime(clndrDispatchDate.SelectedDate);
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order class
+        clsOrders AnOrders = new clsOrders ();
+        //create a variable to store the primary key
+        Int32 OrderID;
+        //create a variable to store the reulst of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        OrderID = Convert.ToInt32(txtOrderID.Text);
+        //find the record
+        Found = AnOrders.Find(OrderID);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtCustomerName.Text = AnOrders.CustomerName;
+            txtStockItem.Text = AnOrders.StockItem; 
+            txtStockItem.Text += AnOrders.StockItem;
+
+        }
+        
+
+
+    }
 }
