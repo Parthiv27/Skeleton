@@ -125,9 +125,28 @@ namespace Testing4
             //invoke the method
             Error = AnOrders.Valid(Dispatched,DispatchDate,Price,StockItem,CustomerName);
             //test to see that the refuls is correct
+        }
+        [TestMethod]
+        public void TestOrderIDFound()
+        {
+            //create an instance of the new class we want
+            clsOrders AnOrder = new clsOrders();
+            //create a boolean variable to store the result
+            Boolean Found = false;
+            //create some test data to use with the method
+            int32 OrderID = 8;
+            //invoke method
+            Found = AnOrder.Find(OrderID);
+            //check the order ID property
+            if (AnOrder.OrderID != 8)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
 
         }
-
+     
 
     }
 }
