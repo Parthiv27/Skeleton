@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ClassLibrary
 {
@@ -136,5 +137,33 @@ namespace ClassLibrary
             //if no errors found then a blank string is returned
         
         
+    }
+    public string Valid (string Price, string Description, string CustomerName, string  DispatchDate)
+    {
+        //create a string variable to store the error 
+        String Error = "";
+        //create a temporary variable to store the date values
+        DateTime DateTemp;
+        //if the house is blank
+        if (Price.Length == 0)
+        {
+            //record the error
+            Error = Error + "The price number may not be blank : ";
+        }
+        // if the price is greater than 100
+        if (Price.Length > 500)
+        {
+            //record the Error
+            Error = Error + "The Price must be less than 500 ; ";
+        }
+        //copy the dateadded value to the datetemp variable
+        DateTemp = Convert.ToDateTime(DateAdded);
+        //check to see if the date is less than todays date 
+        if (DateTemp < DateTime.Now.Date)
+        {
+            Error = Error + "The date cannot be in the past : ";
+        }
+        //return any error messages
+        return Error;
     }
 }
