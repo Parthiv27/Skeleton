@@ -143,7 +143,7 @@ namespace ClassLibrary
         //create a string variable to store the error 
         String Error = "";
         //create a temporary variable to store the date values
-        DateTime DateTemp
+        DateTime DateTemp;
         //if the house is blank
         if (Price.Length == 0)
         {
