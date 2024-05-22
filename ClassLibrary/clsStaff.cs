@@ -193,7 +193,7 @@ namespace ClassLibrary
                 if (DateTemp < DateComp) //compare dateAdded with Date
                 {
                     //record the  no error
-                    Error = Error + "The date can be in the past : ";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateComp)
