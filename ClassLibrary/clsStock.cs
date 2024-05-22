@@ -154,27 +154,7 @@ namespace ClassLibrary
             if (Producttype.Length > 20)
             {
                 Error = Error + "The Product type must not be less than 20 characters : ";
-            }
-            DateTime DateComp = DateTime.Now.Date;
-            try
-            {
-
-                DateTemp = DateTime.ParseExact(Daterestocked, "dd/MM/yyyy", null);
-                if (DateTemp < DateComp.AddYears(-100))
-                {
-                    Error += "The date cannot be more than 100 years in the past : ";
-
-                }
-
-                if (DateTemp > DateComp)
-                {
-                    Error = Error + "The date cannot be in the future : ";
-                }
-            }
-            catch (FormatException)
-            {
-                Error = Error + "The date was not a valid date : ";
-            }
+            }          
 
             if (Size.Length == 0)
             {
@@ -196,6 +176,27 @@ namespace ClassLibrary
             if (StockQuantity.Length > 50)
             {
                 Error = Error + "The Stock Quantity must be less than 50 characters : ";
+            }
+
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+
+                DateTemp = Convert.ToDateTime(Daterestocked);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error += "The date cannot be in the past : ";
+
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch (FormatException)
+            {
+                Error = Error + "The date was not a valid date : ";
             }
 
             return Error;

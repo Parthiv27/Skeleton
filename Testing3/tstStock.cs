@@ -451,13 +451,15 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate = DateTime.Now.Date.AddYears(-100);
+            DateTime TestDate;
+            
+            TestDate = DateTime.Now.Date.AddYears(-100);
 
-            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
+            string Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
 
@@ -470,13 +472,15 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate = DateTime.Now.Date.AddDays(-1);
+            DateTime TestDate;
 
-            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
+            TestDate = DateTime.Now.Date.AddDays(-1);
+
+            string Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
 
@@ -489,9 +493,11 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate = DateTime.Now.Date;
+            DateTime TestDate;
 
-            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
+            TestDate = DateTime.Now.Date;
+
+            string Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -508,9 +514,11 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate = DateTime.Now.Date.AddDays(1);
+            DateTime TestDate;
 
-            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
+            TestDate = DateTime.Now.Date.AddDays(1);
+
+            string Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -527,9 +535,11 @@ namespace Testing3
 
             String Error = "";
 
-            DateTime TestDate = DateTime.Now.Date.AddYears(100);
+            DateTime TestDate;
 
-            string Daterestocked = TestDate.ToString("dd/MM/yyyy");
+            TestDate = DateTime.Now.Date.AddYears(100);
+
+            string Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
