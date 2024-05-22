@@ -49,7 +49,7 @@ namespace ClassLibrary
         //private data for member for the Order id property
         private Int32 mOrderID;
         //OrderID public property
-        
+
         public Int32 OrderID
         {
             get
@@ -100,9 +100,12 @@ namespace ClassLibrary
                 Description = value;
             }
         }
+
+        public string name { get; set; }
+
         /********* FIND METHOD ************/
-            public bool Find(int OrderID)
-                {
+        public bool Find(int OrderID)
+        {
             //create an instance of data connection
             clsDataConnection DB = new clsDataConnection();
             //add the paramater for the item ID to search for
@@ -125,45 +128,35 @@ namespace ClassLibrary
             mDispatchDate = Convert.ToDateTime("02/06/2004");
             //always return true
             return true;
-                }
-        //function for the public validation method
-        //public string Valid(string Dispatched,
-                          //  string Price,
-                          //  string Customername,
-                           // DateTime DispatchDate,
-                           // string StockItem);
-            //this funcation accpets 5 parameters for the validation
-            //the function returns a string containing any error message
-            //if no errors found then a blank string is returned
-        
-        
-    }
-    public string Valid (string Price, string Description, string CustomerName, string  DispatchDate)
-    {
-        //create a string variable to store the error 
-        String Error = "";
-        //create a temporary variable to store the date values
-        DateTime DateTemp;
-        //if the house is blank
-        if (Price.Length == 0)
-        {
-            //record the error
-            Error = Error + "The price number may not be blank : ";
         }
-        // if the price is greater than 100
-        if (Price.Length > 500)
+
+        public string Valid(string stockItem, string CustomerName)
         {
-            //record the Error
-            Error = Error + "The Price must be less than 500 ; ";
+            //create a string variable to store the error 
+            String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the house is blank
+            if (CustomerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Customer name  may not be blank : ";
+            }
+            // if the price is greater than 100
+            if (CustomerName.Length > 500)
+            {
+                //record the Error
+                Error = Error + "The customer name must be less than 500 ; ";
+            }
+            //copy the dateadded value to the datetemp variable
+            DateTemp = Convert.ToDateTime(DispatchDate);
+            //check to see if the date is less than todays date 
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+            //return any error messages
+            return Error;
         }
-        //copy the dateadded value to the datetemp variable
-        DateTemp = Convert.ToDateTime(DateAdded);
-        //check to see if the date is less than todays date 
-        if (DateTemp < DateTime.Now.Date)
-        {
-            Error = Error + "The date cannot be in the past : ";
-        }
-        //return any error messages
-        return Error;
     }
 }
