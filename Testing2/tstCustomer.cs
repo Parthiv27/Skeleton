@@ -72,7 +72,7 @@ namespace Testing2
             //assign the data to the property
             ACustomer.DateJoined = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(ACustomer.HireDate, TestData);
+            Assert.AreEqual(ACustomer.DateJoined, TestData);
 
         }
         [TestMethod]
@@ -99,5 +99,43 @@ namespace Testing2
             //test to see that the two values are the same
             Assert.AreEqual(ACustomer.Address, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create the instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //create boolean variables to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 CustomerId = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerId);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestCustomerIdFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //create the boolean variable to store the variable of the search
+            Boolean Found = false;
+            //create the boolean variable to record if the data is ok (assime it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerId = 21;
+            //invoke the test method
+            Found = ACustomer.Find(CustomerId);
+            //check the customer Id
+            if (ACustomer.CustomerId != 21)
+            {
+                OK = false;
+            }
+            //test to see that the result is ok
+            Assert.IsTrue(OK);
+        }
+
+
+        
     }
 }
