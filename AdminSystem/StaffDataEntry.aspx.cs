@@ -8,13 +8,13 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    public object txtActive { get; private set; }
-    public object salary { get; private set; }
-    public bool active { get; private set; }
-    public DateTime hireDate { get; private set; }
-    public string email { get; private set; }
-    public string firstName { get; private set; }
-    public string lastName { get; private set; }
+    //public object txtActive { get; private set; }
+    //public object salary { get; private set; }
+    //public bool active { get; private set; }
+    //public DateTime hireDate { get; private set; }
+    //public string email { get; private set; }
+    //public string firstName { get; private set; }
+    //public string lastName { get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
