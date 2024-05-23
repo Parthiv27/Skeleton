@@ -63,7 +63,7 @@ namespace Testing2
             Assert.AreEqual(ACustomer.Address, TestData);
         }
         [TestMethod]
-        public void JoinedDatePropertyOK()
+        public void DateJoinedPropertyOK()
         {
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
@@ -102,40 +102,38 @@ namespace Testing2
         [TestMethod]
         public void FindMethodOK()
         {
-            //create the instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
-            //create boolean variables to store the results of the validation
             Boolean Found = false;
-            //create some test data to use with the method
             Int32 CustomerId = 21;
-            //invoke the method
             Found = ACustomer.Find(CustomerId);
-            //test to see if the result is true
             Assert.IsTrue(Found);
         }
+
         [TestMethod]
-        public void TestCustomerIdFound()
+        public void TestDateJoinedFound()
         {
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
-            //create the boolean variable to store the variable of the search
+            //create a boolean variable to store the result of the search
             Boolean Found = false;
-            //create the boolean variable to record if the data is ok (assime it is)
+            //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
             Int32 CustomerId = 21;
-            //invoke the test method
+            //invike the method
             Found = ACustomer.Find(CustomerId);
-            //check the customer Id
-            if (ACustomer.CustomerId != 21)
+            //check the customer id
+            if (ACustomer.DateJoined != Convert.ToDateTime("23/05/2024"))
             {
                 OK = false;
             }
-            //test to see that the result is ok
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
-
-        
     }
+
 }
+        
+    
+
