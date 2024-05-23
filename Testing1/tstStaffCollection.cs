@@ -127,6 +127,45 @@ namespace Testing1
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            // Arrange
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.FirstName = "Harry";
+            TestItem.LastName = "Potter";
+            TestItem.Email = "HarryPotter@gmail.com";
+            TestItem.HireDate = DateTime.Now;
+            TestItem.Active = true;
+            TestItem.Salary = 45000;
+
+            // set this staff to test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record 
+            PrimaryKey = AllStaff.Add();
+            //set the parimary key  of of test data
+            TestItem.StaffId = PrimaryKey;
+            //modify the test record
+            //set its properties
+            TestItem.FirstName = "Rene";
+            TestItem.LastName = "Fisher";
+            TestItem.Email = "Rf@gmail.com";
+            TestItem.HireDate = DateTime.Now;
+            TestItem.Active = true;
+            TestItem.Salary = 35000;
+            //set the record baesd on the new test data
+            AllStaff.ThisStaff = TestItem;
+            //update the record 
+            AllStaff.Update();
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test  to see that the two values are same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
     }
 }
 
