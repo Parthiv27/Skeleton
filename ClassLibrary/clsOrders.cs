@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -143,10 +143,10 @@ namespace ClassLibrary
                 Error = Error + "The Customer name  may not be blank : ";
             }
             // if the price is greater than 100
-            if (CustomerName.Length > 500)
+            if (CustomerName.Length > 60)
             {
                 //record the Error
-                Error = Error + "The customer name must be less than 500 ; ";
+                Error = Error + "The customer name must be less than 60 ; ";
             }
             //copy the dateadded value to the datetemp variable
             DateTemp = Convert.ToDateTime(DispatchDate);
@@ -157,6 +157,17 @@ namespace ClassLibrary
             }
             //return any error messages
             return Error;
+            if (StockItem.Length == 0)
+            {
+                //record the error
+                Error = Error + "The stock Item must not be blank:";
+            }
+
+        }
+
+        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price, string dispatched)
+        {
+            throw new NotImplementedException();
         }
     }
 }
