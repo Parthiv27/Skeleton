@@ -104,7 +104,7 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             Found = ACustomer.Find(CustomerId);
             Assert.IsTrue(Found);
         }
@@ -119,7 +119,7 @@ namespace Testing2
             //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
@@ -141,7 +141,7 @@ namespace Testing2
             //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
@@ -162,7 +162,7 @@ namespace Testing2
             //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
@@ -183,7 +183,7 @@ namespace Testing2
             //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
@@ -204,7 +204,7 @@ namespace Testing2
             //create a boolean variable to record if the datais ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerId = 21;
+            Int32 CustomerId = 4;
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
@@ -215,6 +215,49 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if the datais ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerId = 4;
+            //invike the method
+            Found = ACustomer.Find(CustomerId);
+            //check the customer id
+            if (ACustomer.Active != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerIdFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if the datais ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerId = 4;
+            //invike the method
+            Found = ACustomer.Find(CustomerId);
+            //check the customer id
+            if (ACustomer.CustomerId != 4)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
 
 
     }

@@ -39,7 +39,7 @@ namespace ClassLibrary
             {
                 return mLastName;
             }
-            set 
+            set
             {
                 mLastName = value;
             }
@@ -60,7 +60,7 @@ namespace ClassLibrary
         public string Address
         {
             get
-            { 
+            {
                 return mAddress;
             }
             set
@@ -80,24 +80,51 @@ namespace ClassLibrary
                 mDateJoined = value;
             }
         }
-       
-        public bool Active { get; set; }
+        private Boolean mActive;
 
-        public bool Find(int customerId)
+        public bool Active
         {
-            //set the private data members to the test data value
-            mCustomerId = 21;
-            mDateJoined = Convert.ToDateTime("23/05/2024");
-            mFirstName = "Test First Name";
-            mLastName = "Test Last Name";
-            mEmail = "Test Email";
-            mAddress = "Test Address";
-            return true;
-            
+            get
+            {
+                return mActive;
+            }
+            set
+            {
+                mActive = value;
+            }
+        }
 
+        public bool Find(int CustomerId)
+        {
+            //reacte an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address id to search for
+            DB.AddParameter("@CustomerId", CustomerId);
+            //execute the stored procedure
+            DB.Execute("sproc_Customer_FilterByCustomerId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test data value
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
+                mFirstName = Convert.ToString(DB.DataTable.Rows[0]["FirstName"]);
+                mLastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                return true;
+
+
+            }
+            else
+            {
+                return false;
+            }
         }
     }
+}
 
 
 
-    }
+    
