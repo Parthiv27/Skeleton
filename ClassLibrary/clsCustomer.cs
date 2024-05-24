@@ -20,10 +20,54 @@ namespace ClassLibrary
                 mCustomerId = value;
             }
         }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
+        private string mFirstName;
+        public string FirstName
+        {
+            get
+            {
+                return mFirstName;
+            }
+            set
+            {
+                mFirstName = value;
+            }
+        }
+        private string mLastName;
+        public string LastName
+        {
+            get
+            {
+                return mLastName;
+            }
+            set 
+            {
+                mLastName = value;
+            }
+        }
+        private string mEmail;
+        public string Email
+        {
+            get
+            {
+                return mEmail;
+            }
+            set
+            {
+                mEmail = value;
+            }
+        }
+        private string mAddress;
+        public string Address
+        {
+            get
+            { 
+                return mAddress;
+            }
+            set
+            {
+                mAddress = value;
+            }
+        }
         private DateTime mDateJoined;
         public DateTime DateJoined
         {
@@ -44,6 +88,10 @@ namespace ClassLibrary
             //set the private data members to the test data value
             mCustomerId = 21;
             mDateJoined = Convert.ToDateTime("23/05/2024");
+            mFirstName = "Test First Name";
+            mLastName = "Test Last Name";
+            mEmail = "Test Email";
+            mAddress = "Test Address";
             return true;
             
 
