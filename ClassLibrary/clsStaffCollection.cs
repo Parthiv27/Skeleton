@@ -122,5 +122,17 @@ namespace ClassLibrary
             DB.Execute("sproc_tblStaff_Update");
         }
 
+        public void Delete()
+        {
+            //deletes the record pointed to by this staff
+            //connect to database
+            clsDataConnection DB = new clsDataConnection();
+            //set the paramter for the store procedure
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            //execute the store procedure
+            DB.Execute("sproc_tblStaff_Delete");
+
+
+        }
     }
 }

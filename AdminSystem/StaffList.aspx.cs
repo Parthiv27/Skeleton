@@ -46,7 +46,7 @@ public partial class _1_List : System.Web.UI.Page
         //variable to store the primary key value of record to be edited
         Int32 StaffId;
         //if a recod has been selected from the list
-        if(lstStaffList.SelectedIndex != -1)
+        if (lstStaffList.SelectedIndex != -1)
         {
             //get the primarykey value of the ecord to edit
             StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
@@ -65,5 +65,25 @@ public partial class _1_List : System.Web.UI.Page
     protected void lstStaffList_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of record to be edited
+        Int32 StaffId;
+        //if a recod has been selected from the list
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            //get the primarykey value of the record to delete
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
+            //store the data in the session obejct
+            Session["StaffId"] = StaffId;
+            //redirect to edit page
+            Response.Redirect("StaffConfirmDelete.aspx");
+        }
+        else  //if no record has been selected
+        {
+            lblError.Text = "Please Select a record from the list to delete";
+        }
     }
 }
