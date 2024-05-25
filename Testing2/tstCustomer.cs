@@ -39,16 +39,16 @@ namespace Testing2
             Assert.AreEqual(ACustomer.FirstName, TestData);
         }
         [TestMethod]
-        public void CustomerLastNamePropertyOK()
+        public void CustomerSurNamePropertyOK()
         {
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
             //create some test data to assign to the property
             string TestData = "SurName";
             //assign the data to the property
-            ACustomer.LastName = TestData;
+            ACustomer.SurName = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(ACustomer.LastName, TestData);
+            Assert.AreEqual(ACustomer.SurName, TestData);
         }
         [TestMethod]
         public void EmailPropertyOK()
@@ -145,7 +145,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.FirstName != "Test First Name")
+            if (ACustomer.FirstName != "Test FirstName")
             {
                 OK = false;
             }
@@ -153,7 +153,7 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
         [TestMethod]
-        public void TestLastNameFound()
+        public void TestSurNameFound()
         {
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
@@ -166,7 +166,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.LastName != "Test Last Name")
+            if (ACustomer.SurName != "Test SurName")
             {
                 OK = false;
             }

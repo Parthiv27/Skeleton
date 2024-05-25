@@ -32,16 +32,16 @@ namespace ClassLibrary
                 mFirstName = value;
             }
         }
-        private string mLastName;
-        public string LastName
+        private string mSurName;
+        public string SurName
         {
             get
             {
-                return mLastName;
+                return mSurName;
             }
             set
             {
-                mLastName = value;
+                mSurName = value;
             }
         }
         private string mEmail;
@@ -101,7 +101,7 @@ namespace ClassLibrary
             //add the parameter for the address id to search for
             DB.AddParameter("@CustomerId", CustomerId);
             //execute the stored procedure
-            DB.Execute("sproc_Customer_FilterByCustomerId");
+            DB.Execute("sproc_tblCustomer_FilterByCustomerId");
             //if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
@@ -109,7 +109,7 @@ namespace ClassLibrary
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
                 mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
                 mFirstName = Convert.ToString(DB.DataTable.Rows[0]["FirstName"]);
-                mLastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                mSurName = Convert.ToString(DB.DataTable.Rows[0]["SurName"]);
                 mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
                 mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
