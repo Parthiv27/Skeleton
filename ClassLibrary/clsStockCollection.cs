@@ -99,6 +99,23 @@ namespace ClassLibrary
 
 
         }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StockId", mThisStock.StockId);
+            DB.AddParameter("@Producttype", mThisStock.Producttype);
+            DB.AddParameter("@Size", mThisStock.Size);
+            DB.AddParameter("@StockQuantity", mThisStock.StockQuantity);
+            DB.AddParameter("@Resrockneeded", mThisStock.Restockneeded);
+            DB.AddParameter("@Daterestocked", mThisStock.Daterestocked);
+            DB.AddParameter("@Discontinued", mThisStock.Discontinued);
+
+            DB.Execute("sproc_tblStock_Update");
+        }
+
+
     }
 
  
