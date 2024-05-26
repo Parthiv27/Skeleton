@@ -199,7 +199,7 @@ namespace Testing4
             //create some test data to pass to the method
             string CustomerName = ""; //this method should trigger an error
             //invoke a method
-            Error = AnCustomerName.Valid(StockItem, CustomerName);
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -213,7 +213,7 @@ namespace Testing4
             //create some test data to pass to the method
             string CustomerName = "aa"; //this should be ok
             //invoke the method
-            Error = AnCustomerName.Valid(StockItem, CustomerName);
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the reult is correct
             Assert.AreEqual(Error, "");
         }
@@ -296,7 +296,7 @@ namespace Testing4
             String Error = "";
             //create a variable to store the test data
             DateTime TestDate;
-            //set the date to whatever the date is less 100 years
+            //set the date to whatever the date is today
             TestDate = DateTime.Now.Date;
             //change the date to whatever the date is less 100 years
             TestDate = TestDate.AddYears(-100);
@@ -306,6 +306,7 @@ namespace Testing4
             Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
+
         }
         [TestMethod]
         public void StockItemMinLessOne()
@@ -700,8 +701,14 @@ namespace Testing4
             clsOrders AnDispatchDate = new clsOrders();
             //string variable to store any error message
             String Error = "";
-            //create some test data to pass to the method
-            string DispatchDate = "aaaaa"; //this should be ok
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 1 day
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string DispatchDate = TestDate.ToString();
             //invoke the method
             Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
@@ -714,22 +721,32 @@ namespace Testing4
             clsOrders AnDispatchDate = new clsOrders();
             //string variable to store any error message
             String Error = "";
-            //create some test data to pass to the method
-            string DDispatchDate = "a"; //this should be ok
+            //Create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable 
+            string DispatchDate = TestDate.ToString();
             //invoke the method
             Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
-        public void DispatchaDatePlusOne()
+        public void DispatchaDateMinPlusOne()
         {
             //create an instance of the class we want to create
             clsOrders AnDispatchDate = new clsOrders();
             //string variable to store any error message
             String Error = "";
-            //create some test data to pass to the method
-            string DispatchDate = "aa"; //this should be ok
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string DispatchDate = TestDate.ToString();
             //invoke the method
             Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
@@ -782,13 +799,33 @@ namespace Testing4
             clsOrders AnDispatchDate = new clsOrders();
             //string variable to store any error message 
             String Error = "";
-            //create some test data to pass to the method 
-            string DispatchDate = "";
-            DispatchDate = DispatchDate.PadRight(500, 'a'); //this shoud fail
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable to a string variable 
+            string DispatchDate = TestDate.ToString();
             //invoke the method
             Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DispatchDateInvalidData()
+        {
+            //create an instance of the new class we want to create
+            clsOrders AnDispatchDate = new clsOrders();
+            //string variable to store any error message
+            String Error = "";
+            //set the dispatcheddate to a non date value
+            string DispatchDate = "This is not a date!:";
+            //invoke the
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            //tes to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
         }
 
 
