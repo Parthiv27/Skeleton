@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.IO;
 
 namespace ClassLibrary
@@ -130,7 +131,7 @@ namespace ClassLibrary
             return true;
         }
 
-        public string Valid(string stockItem, string CustomerName)
+        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price, string dispatched)
         {
             //create a string variable to store the error 
             String Error = "";
@@ -162,12 +163,24 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The stock Item must not be blank:";
             }
+            if (StockItem.Length > 60)
+            {
+                //record the error
+                Error = Error + "The stock item must be less than 60 characters:";
+            }
+            if (Description.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Description must not be blank:";
+            }
+            if (Description.Length > 60)
+            {
+                //record the error
+                Error = Error + "The description must be less than 100 characters:";
+            }
 
         }
 
-        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price, string dispatched)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

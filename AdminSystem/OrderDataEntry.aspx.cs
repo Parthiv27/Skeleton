@@ -15,12 +15,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsOrders
+        //create a new instance of cls orders
         clsOrders AnOrders = new clsOrders();
-        //capture the OrderID
-        AnOrders.OrderID = Convert.ToInt32(txtOrderID.Text);
-       
-      
+        //capture the CustomerName
+        string CustomerName = txtCustomerName.Text;
+        //capture StockItem
+        string StockItem = txtStockItem.Text;
+        //capture price
+        string Price = txtPrice.Text;
+        //capture DispatchDate
+        string DispatchDate = txtDispatchtDate.Text;
+        //capture description
+        string Description = txtDescription.Text;
+        //capture Dispatched
+        bool Dispatched = chkDispatched.Checked;
+        string Error = "";
+        //validate the data
+        Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+        if (Error == "")
+        {
+            //capture customer name
+            AnOrders.CustomerName = CustomerName;
+            //capture stock item
+            AnOrders.StockItem = StockItem;
+            //capture price
+            AnOrders.Price = Price;
+            //capture Dispatch date
+            AnOrders.DispatchDate = Convert.ToDateTime(DispatchDate);
+            //store the order in the session object
+            Session["AnOrders"] = AnOrders;
+            //navigate to the view page
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+
+
+
 
         // capture CustomerName 
         AnOrders.CustomerName = txtCustomerName.Text;
