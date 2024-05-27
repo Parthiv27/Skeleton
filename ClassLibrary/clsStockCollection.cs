@@ -100,6 +100,15 @@ namespace ClassLibrary
 
         }
 
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StockId", mThisStock.StockId);
+
+            DB.Execute("sproc_tblStock_Delete");
+        }
+
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -108,7 +117,7 @@ namespace ClassLibrary
             DB.AddParameter("@Producttype", mThisStock.Producttype);
             DB.AddParameter("@Size", mThisStock.Size);
             DB.AddParameter("@StockQuantity", mThisStock.StockQuantity);
-            DB.AddParameter("@Resrockneeded", mThisStock.Restockneeded);
+            DB.AddParameter("@Restockneeded", mThisStock.Restockneeded);
             DB.AddParameter("@Daterestocked", mThisStock.Daterestocked);
             DB.AddParameter("@Discontinued", mThisStock.Discontinued);
 
