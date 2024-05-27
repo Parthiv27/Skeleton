@@ -17,7 +17,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display the first name of the customer
         Response.Write(ACustomer.FirstName);
         //Display the last name of the customer
-        Response.Write(ACustomer.LastName);
+        Response.Write(ACustomer.SurName);
         //display the email of the customer
         Response.Write(ACustomer.Email);
         //display the address of the customer

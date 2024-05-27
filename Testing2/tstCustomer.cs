@@ -123,7 +123,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.DateJoined != Convert.ToDateTime("23/05/2024"))
+            if (ACustomer.DateJoined != Convert.ToDateTime("02/06/2022"))
             {
                 OK = false;
             }
@@ -145,7 +145,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.FirstName != "Test FirstName")
+            if (ACustomer.FirstName != "Joe")
             {
                 OK = false;
             }
@@ -166,7 +166,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.SurName != "Test SurName")
+            if (ACustomer.SurName != "BIDEN")
             {
                 OK = false;
             }
@@ -187,7 +187,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.Email != "Test Email")
+            if (ACustomer.Email != "joe4@gmail.com")
             {
                 OK = false;
             }
@@ -208,7 +208,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.Address != "Test Address")
+            if (ACustomer.Address != "7 broadway")
             {
                 OK = false;
             }
@@ -229,7 +229,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.Active != true)
+            if (ACustomer.Active != false)
             {
                 OK = false;
             }
@@ -263,6 +263,6 @@ namespace Testing2
     }
 
 }
-        
-    
+
+
 

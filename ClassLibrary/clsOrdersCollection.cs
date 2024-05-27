@@ -5,6 +5,35 @@ namespace ClassLibrary
 {
     public class clsOrdersCollection
     {
+        public clsOrdersCollection()
+        {
+
+            //create the items of the test data 
+            clsOrders TestItem = new clsOrders();
+            //set its properties
+            TestItem.Dispatched = true;
+            TestItem.OrderID = 1;
+            TestItem.CustomerName = "evans abahigwe";
+            TestItem.StockItem = "black cats";
+            TestItem.Description = "black and white shoes";
+            TestItem.DispatchDate = DateTime.Now;
+            TestItem.Price = 100;
+            //Add the test item to the test list
+            mOrdersList.Add(TestItem);
+            //re initialise the object for some new data
+            TestItem = new clsOrders();
+            //set its properties
+            TestItem.Dispatched = true;
+            TestItem.OrderID = 2;
+            TestItem.CustomerName = "evans abahigwe";
+            TestItem.Description = "black and white shoes";
+            TestItem.DispatchDate = DateTime.Now;
+            TestItem.StockItem = "black cats";
+            TestItem.Price = 100;
+            //add the item to the test list
+            mOrdersList.Add(TestItem);
+        }
+
         //private data member for the list
         private List<clsOrders> mOrdersList;
 
@@ -36,34 +65,5 @@ namespace ClassLibrary
         }
         public clsOrders ThisOrders { get; set; }
         
-    }
-
-    public clsOrdersCollection()
-    {
-
-        //create the items of the test data 
-        clsOrders TestItem = new clsOrders();
-        //set its properties
-        TestItem.Dispatched = true;
-        TestItem.OrderID = 1;
-        TestItem.CustomerName = "evans abahigwe";
-        TestItem.StockItem = "black cats";
-        TestItem.Description = "black and white shoes";
-        TestItem.DispatchDate = DateTime.Now;
-        TestItem.Price = 100;
-        //Add the test item to the test list
-        mOrdersList.Add(TestItem);
-        //re initialise the object for some new data
-        TestItem = new clsOrders();
-        //set its properties
-        TestItem.Dispatched = true;
-        TestItem.OrderID = 2;
-        TestItem.CustomerName = "evans abahigwe";
-        TestItem.Description = "black and white shoes";
-        TestItem.DispatchDate = DateTime.Now;
-        TestItem.StockItem = "black cats";
-        TestItem.Price = 100;
-        //add the item to the test list
-        mOrderList.Add(TestItem);
     }
 }
