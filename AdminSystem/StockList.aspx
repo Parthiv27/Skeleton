@@ -16,6 +16,8 @@
 
             <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 90px; top: 398px; position: absolute" Text="Edit" />
 
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 175px; top: 399px; position: absolute" Text="Delete" />
+
         </div>
         <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 13px; top: 399px; position: absolute" Text="Add" />
     </form>

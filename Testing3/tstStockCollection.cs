@@ -128,8 +128,7 @@ namespace Testing3
         }
 
         [TestMethod]
-
-        public void UpdateMethod()
+        public void UpdateMethodOK()
         {
             clsStockCollection AllStocks = new clsStockCollection();
 
@@ -165,6 +164,39 @@ namespace Testing3
 
             Assert.AreEqual(AllStocks.ThisStock, Testitem);
 
+        }
+
+        [TestMethod]
+
+        public void DeleteMethodOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+
+            clsStock Testitem = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            Testitem.StockId = 1;
+            Testitem.Producttype = "sneaker";
+            Testitem.Size = "8";
+            Testitem.StockQuantity = 5;
+            Testitem.Restockneeded = true;
+            Testitem.Daterestocked = DateTime.Now;
+            Testitem.Discontinued = false;
+
+            AllStocks.ThisStock = Testitem;
+
+            PrimaryKey = AllStocks.Add();
+
+            Testitem.StockId = PrimaryKey;
+
+            AllStocks.ThisStock.Find(PrimaryKey);
+
+            AllStocks.Delete();
+
+            Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
         }
        
 
