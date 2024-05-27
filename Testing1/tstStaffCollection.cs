@@ -127,6 +127,79 @@ namespace Testing1
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            // Arrange
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.FirstName = "Harry";
+            TestItem.LastName = "Potter";
+            TestItem.Email = "HarryPotter@gmail.com";
+            TestItem.HireDate = DateTime.Now;
+            TestItem.Active = true;
+            TestItem.Salary = 45000;
+
+            // set this staff to test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record 
+            PrimaryKey = AllStaff.Add();
+            //set the parimary key  of of test data
+            TestItem.StaffId = PrimaryKey;
+            //modify the test record
+            //set its properties
+            TestItem.FirstName = "Rene";
+            TestItem.LastName = "Fisher";
+            TestItem.Email = "Rf@gmail.com";
+            TestItem.HireDate = DateTime.Now;
+            TestItem.Active = true;
+            TestItem.Salary = 35000;
+            //set the record baesd on the new test data
+            AllStaff.ThisStaff = TestItem;
+            //update the record 
+            AllStaff.Update();
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test  to see that the two values are same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //variable to store primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.StaffId = 47;
+            TestItem.FirstName = "Harry";
+            TestItem.LastName = "Potter";
+            TestItem.Email = "HarryPotter@gmail.com";
+            TestItem.HireDate = DateTime.Now;
+            TestItem.Active = true;
+            TestItem.Salary = 45000;
+
+            // set this staff to test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record 
+            PrimaryKey = AllStaff.Add();
+            //set the parimary key  of of test data
+            TestItem.StaffId = PrimaryKey;
+            //find the reord
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //delete the record
+            AllStaff.Delete();
+            //now find the record
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see that the record was not found
+            Assert.IsFalse( Found );
+     
+        }
     }
 }
 

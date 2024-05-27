@@ -21,7 +21,7 @@
             <asp:Label ID="lblCustomerName" runat="server" style="z-index: 1; left: 10px; top: 149px; position: absolute; height: 23px; bottom: 504px; width: 61px;" Text="CustomerName"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="txtCustomerName" runat="server" OnTextChanged="TextBox1_TextChanged" style="z-index: 1; left: 113px; top: 143px; position: absolute; width: 131px; height: 22px;"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerName" runat="server" OnTextChanged="CustomerName_TextChanged" style="z-index: 1; left: 108px; top: 143px; position: absolute; width: 129px; height: 22px;"></asp:TextBox>
         </p>
         <asp:Label ID="lblPrice" runat="server" style="z-index: 1; left: 11px; top: 199px; position: absolute; height: 19px; width: 61px;" Text="Price"></asp:Label>
       

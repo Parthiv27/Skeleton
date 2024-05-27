@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASP;
 using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
@@ -16,20 +17,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
     //public string firstName { get; private set; }
     //public string lastName { get; private set; }
 
+    //variable to store the primary key with page level scope
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
-    {
-
+    { 
+        //get the number of staff to be processed
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        if (IsPostBack == false)
+        {
+               // If StaffId is not -1, display the staff record
+                if (StaffId != -1)
+                {
+                    DisplayStaff();
+                }    
+        }
     }
 
+     void DisplayStaff()
+    {
+        // Create an instance of the staff collection
+        clsStaffCollection StaffDataEntry = new clsStaffCollection();
 
+        // Find the record to update
+        if (StaffDataEntry.ThisStaff.Find(StaffId))
+        {
+            // Display the data in the text boxes
+            txtStaffId.Text = StaffDataEntry.ThisStaff.StaffId.ToString();
+            txtFirstName.Text = StaffDataEntry.ThisStaff.FirstName.ToString();
+            txtLastName.Text = StaffDataEntry.ThisStaff.LastName.ToString();
+            txtEmail.Text = StaffDataEntry.ThisStaff.Email.ToString();
+            txtHireDate.Text = StaffDataEntry.ThisStaff.HireDate.ToString();
+            chkActive.Checked = StaffDataEntry.ThisStaff.Active;
+            txtSalary.Text = StaffDataEntry.ThisStaff.Salary.ToString();
+        }
+    }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStaff
         clsStaff AnStaff = new clsStaff();
 
-        //capture the StaffId
-        AnStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
 
         //capture the firstname
         string firstName = txtFirstName.Text;
@@ -58,6 +85,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //assign the values to the AnStaff object
+            AnStaff.StaffId = StaffId; // Dont miss this bit
             AnStaff.FirstName = firstName;
             AnStaff.LastName = lastName;
             AnStaff.Email = email;
@@ -66,17 +94,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStaff.Salary = Convert.ToDecimal(salary);
             //create a new instance of stafff collection
             clsStaffCollection StaffList = new clsStaffCollection();
-            //set the thisstaff property
-            StaffList.ThisStaff = AnStaff;
-            //add the new record
-            StaffList.Add();
-            //navigate to the view page
-            Response.Redirect("StaffList.aspx");
-        }
+            //new record 
+            if (StaffId == -1)
+
+            {  //set the thisstaff property
+                StaffList.ThisStaff = AnStaff;
+                //add the new record
+                StaffList.Add();
+            }
         else
         {
-            //display the error message
-            lblError.Text = Error;
+            // Find record to update
+            StaffList.ThisStaff.Find(StaffId);
+            StaffList.ThisStaff = AnStaff;
+            StaffList.Update();
+        }
+        //navigate to the view page
+        Response.Redirect("StaffList.aspx");
+
+        //display the error message
+        lblError.Text = Error;
         }
     }
 
@@ -110,8 +147,5 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtSalary.Text = AnStaff.Salary.ToString();
 
         }
-
-
     }
 }
-

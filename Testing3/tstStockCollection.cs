@@ -127,5 +127,46 @@ namespace Testing3
             Assert.AreEqual(Allstocks.ThisStock, Testitem);
         }
 
+        [TestMethod]
+
+        public void UpdateMethod()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+
+            clsStock Testitem = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            Testitem.Producttype = "sneaker";
+            Testitem.Size = "8";
+            Testitem.StockQuantity = 5;
+            Testitem.Restockneeded = true;
+            Testitem.Daterestocked = DateTime.Now;
+            Testitem.Discontinued = false;
+
+            AllStocks.ThisStock = Testitem;
+
+            PrimaryKey = AllStocks.Add();
+
+            Testitem.StockId = PrimaryKey;
+
+            Testitem.Producttype = "somesneakerss";
+            Testitem.Size = "11";
+            Testitem.StockQuantity = 8;
+            Testitem.Restockneeded = false;
+            Testitem.Daterestocked = DateTime.Now;
+            Testitem.Discontinued = true;
+
+            AllStocks.ThisStock = Testitem;
+
+            AllStocks.Update();
+
+            AllStocks.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStocks.ThisStock, Testitem);
+
+        }
+       
+
     }
 }
