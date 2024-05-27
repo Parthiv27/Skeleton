@@ -10,7 +10,8 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 13px; top: 42px; position: absolute" Text="CustomerID"></asp:Label>
+        <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 11px; top: 44px; position: absolute" Text="CustomerID"></asp:Label>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="margin-left: 632px" Text="Find" Width="111px" />
         <p style="height: 0px">
             <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 207px; top: 36px; position: absolute; height: 33px; width: 171px"></asp:TextBox>
         </p>
@@ -18,16 +19,16 @@
         <p>
             <asp:Label ID="lblFirstName" runat="server" style="z-index: 1; left: 13px; top: 116px; position: absolute" Text="First Name"></asp:Label>
         </p>
-        <asp:Label ID="lblLastrName" runat="server" style="z-index: 1; left: 13px; top: 177px; position: absolute" Text="Last Name"></asp:Label>
+        <asp:Label ID="lblSurName" runat="server" style="z-index: 1; left: 13px; top: 177px; position: absolute; right: 1394px;" Text="SurName"></asp:Label>
         <p>
-            <asp:TextBox ID="txtLastName" runat="server" style="z-index: 1; left: 203px; top: 171px; position: absolute; height: 32px; bottom: 560px"></asp:TextBox>
+            <asp:TextBox ID="txtSurName" runat="server" style="z-index: 1; left: 203px; top: 171px; position: absolute; height: 32px; bottom: 560px"></asp:TextBox>
         </p>
         <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 12px; top: 243px; position: absolute" Text="Email"></asp:Label>
         <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 202px; top: 237px; position: absolute; width: 247px; height: 33px"></asp:TextBox>
         <asp:Label ID="lblAddress" runat="server" style="z-index: 1; left: 12px; top: 299px; position: absolute; width: 87px" Text="Address"></asp:Label>
         <asp:TextBox ID="txtAddress" runat="server" style="z-index: 1; left: 203px; top: 292px; position: absolute; height: 28px; width: 469px"></asp:TextBox>
         <asp:Label ID="lblDateJoined" runat="server" style="z-index: 1; left: 12px; top: 349px; position: absolute" Text="Date Joined"></asp:Label>
-        <asp:TextBox ID="TextBox7" runat="server" style="z-index: 1; left: 202px; top: 345px; position: absolute; height: 30px; width: 193px"></asp:TextBox>
+        <asp:TextBox ID="txtDateJoined" runat="server" style="z-index: 1; left: 202px; top: 345px; position: absolute; height: 30px; width: 193px"></asp:TextBox>
         <p>
             &nbsp;</p>
         <p>

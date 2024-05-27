@@ -31,7 +31,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         bool Dispatched = chkDispatched.Checked;
         string Error = "";
         //validate the data
-        Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+        Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         if (Error == "")
         {
             //capture customer name
@@ -39,7 +39,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture stock item
             AnOrders.StockItem = StockItem;
             //capture price
-            AnOrders.Price = Price;
+            AnOrders.Price = Convert.ToDouble(Price);
             //capture Dispatch date
             AnOrders.DispatchDate = Convert.ToDateTime(DispatchDate);
             //store the order in the session object

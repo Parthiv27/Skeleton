@@ -131,7 +131,7 @@ namespace ClassLibrary
             return true;
         }
 
-        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price, string dispatched)
+        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price)
         {
             //create a string variable to store the error 
             String Error = "";
@@ -156,8 +156,6 @@ namespace ClassLibrary
             {
                 Error = Error + "The date cannot be in the past : ";
             }
-            //return any error messages
-            return Error;
             if (StockItem.Length == 0)
             {
                 //record the error
@@ -178,7 +176,8 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The description must be less than 100 characters:";
             }
-
+            //return any error messages
+            return Error;
         }
 
 
