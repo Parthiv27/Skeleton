@@ -30,7 +30,7 @@ namespace Testing3
 
             clsStock Testitem = new clsStock();
 
-            Testitem.StockId = 1;
+            Testitem.StockId = 1040;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -59,7 +59,7 @@ namespace Testing3
             clsStock TestStock = new clsStock();
 
 
-            TestStock.StockId = 1;
+            TestStock.StockId = 1040;
             TestStock.Producttype = "sneaker";
             TestStock.Size = "8";
             TestStock.StockQuantity = 5;
@@ -84,7 +84,7 @@ namespace Testing3
 
             clsStock Testitem = new clsStock();
 
-            Testitem.StockId = 1;
+            Testitem.StockId = 1040;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -108,7 +108,7 @@ namespace Testing3
 
             Int32 PrimaryKey = 0;
 
-            Testitem.StockId = 1;
+            Testitem.StockId = 1040;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -176,7 +176,7 @@ namespace Testing3
 
             Int32 PrimaryKey = 0;
 
-            Testitem.StockId = 1;
+            Testitem.StockId = 1040;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -198,7 +198,9 @@ namespace Testing3
 
             Assert.IsFalse(Found);
         }
-       
+
+
+
 
     }
 }
