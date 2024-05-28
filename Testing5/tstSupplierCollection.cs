@@ -44,9 +44,9 @@ namespace Testing5
         public void CountPropertyOK()
         {
             clsSupplierCollection AllSupplier = new clsSupplierCollection();
-            Int32 nCount = 0;
-            AllSupplier.Count = nCount;
-            Assert.AreEqual(AllSupplier.Count, nCount);
+            Int32 SomeCount = 0;
+            AllSupplier.Count = SomeCount;
+            Assert.AreEqual(AllSupplier.Count, SomeCount);
         }
 
         [TestMethod]
@@ -97,5 +97,129 @@ namespace Testing5
             clsSupplierCollection AllSupplier= new clsSupplierCollection();
             Assert.AreEqual(AllSupplier.Count, 2);
         }
+
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            clsSupplier TestSupplier = new clsSupplier();
+            Int32 PrimaryKey = 0;
+            TestSupplier.SupplierName = "Ahmad Faraz";
+            TestSupplier.Email = "ahmad@gmail.com";
+            TestSupplier.Phone = "11111111112";
+            TestSupplier.Active = false;
+            TestSupplier.DateReg = DateTime.Now.Date;
+            AllSuppliers.ThisSupplier = TestSupplier;
+            PrimaryKey = AllSuppliers.Add();
+            TestSupplier.SupplierID = PrimaryKey;
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            Assert.AreEqual(AllSuppliers.ThisSupplier, TestSupplier);
+
+        }
+
+        [TestMethod]
+        public void EditMethodOK()
+        {
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            clsSupplier TestSupplier = new clsSupplier();
+            Int32 PrimaryKey = 0;
+            TestSupplier.SupplierName = "Ahmad Faraz";
+            TestSupplier.Email = "ahmad@gmail.com";
+            TestSupplier.Phone = "11111111112";
+            TestSupplier.Active = false;
+            TestSupplier.DateReg = DateTime.Now.Date;
+
+            AllSuppliers.ThisSupplier = TestSupplier;
+
+            PrimaryKey = AllSuppliers.Add();
+            TestSupplier.SupplierID = PrimaryKey;
+            TestSupplier.SupplierName = "AHMAD Faraz";
+            TestSupplier.Email = "ahmad@Hotmail.com";
+            TestSupplier.Phone = "111111999912";
+            TestSupplier.Active = true;
+            TestSupplier.DateReg = DateTime.Now.Date;
+
+            AllSuppliers.ThisSupplier = TestSupplier;
+            AllSuppliers.Update();
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            Assert.AreEqual(AllSuppliers.ThisSupplier, TestSupplier);
+        }
+
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            clsSupplier TestSupplier = new clsSupplier();
+            Int32 PrimaryKey = 0;
+
+            TestSupplier.SupplierID = PrimaryKey;
+            TestSupplier.SupplierName = "Ahmad Faraz";
+            TestSupplier.Email = "ahmad@gmail.com";
+            TestSupplier.Phone = "11111111112";
+            TestSupplier.Active = false;
+            TestSupplier.DateReg = DateTime.Now.Date;
+            AllSuppliers.ThisSupplier = TestSupplier;
+            PrimaryKey = AllSuppliers.Add();
+            TestSupplier.SupplierID = PrimaryKey;
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+
+            AllSuppliers.Delete();
+            Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+
+
+        [TestMethod]
+        public void ReportBySuppliernameMethodOK()
+        {
+
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            FilteredSuppliers.ReportBySupplierEmail("");
+
+            Assert.AreEqual(AllSuppliers.Count, FilteredSuppliers.Count);
+
+
+        }
+
+        [TestMethod]
+        public void ReportBySuppliernameNoneFound()
+        {
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            FilteredSuppliers.ReportBySupplierEmail("samar@gmail.com");
+            Assert.AreEqual(0, FilteredSuppliers.Count);
+        }
+
+
+        [TestMethod]
+
+        public void ReportBySuppliernameTestDataFound()
+        {
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            Boolean OK = true;
+            FilteredSuppliers.ReportBySupplierEmail("Samar Hayat");
+            if (FilteredSuppliers.Count == 2)
+            {
+                if (FilteredSuppliers.SupplierList[0].SupplierID != 24)
+                {
+                    OK = false;
+                }
+                if (FilteredSuppliers.SupplierList[0].SupplierID != 25)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsFalse(OK);
+        }
+
+
     }
 }
