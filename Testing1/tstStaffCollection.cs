@@ -233,31 +233,28 @@ namespace Testing1
             clsStaffCollection FilteredStaff = new clsStaffCollection();
             //variable to store the outcome
             Boolean OK = true;
-            //apply a first name that doenst exits
-            FilteredStaff.ReportByFirstName("YYY YYY");
-            //check the record correct number of record found
+            //apply a first name that exists in your dataset
+            FilteredStaff.ReportByFirstName("Harry");
+            //check the correct number of records found
             if (FilteredStaff.Count == 2)
             {
                 //check the record if the first record is 47
                 if (FilteredStaff.StaffList[0].StaffId != 47)
                 {
                     OK = false;
-
                 }
-                //check to see that the first record is 90
+                //check to see that the second record is 90
                 if (FilteredStaff.StaffList[1].StaffId != 90)
                 {
                     OK = false;
                 }
             }
-            else 
-            { 
-                OK = false; 
-            }    
-
-            //test to see there are no record
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are the expected records
             Assert.IsTrue(OK);
-
         }
     }
 }
