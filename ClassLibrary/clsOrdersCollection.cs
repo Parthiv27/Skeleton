@@ -1,44 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+
     public class clsOrdersCollection
     {
-        public clsOrdersCollection()
-        {
-
-            //create the items of the test data 
-            clsOrders TestItem = new clsOrders();
-            //set its properties
-            TestItem.Dispatched = true;
-            TestItem.OrderID = 1;
-            TestItem.CustomerName = "evans abahigwe";
-            TestItem.StockItem = "black cats";
-            TestItem.Description = "black and white shoes";
-            TestItem.DispatchDate = DateTime.Now;
-            TestItem.Price = 100;
-            //Add the test item to the test list
-            mOrdersList.Add(TestItem);
-            //re initialise the object for some new data
-            TestItem = new clsOrders();
-            //set its properties
-            TestItem.Dispatched = true;
-            TestItem.OrderID = 2;
-            TestItem.CustomerName = "evans abahigwe";
-            TestItem.Description = "black and white shoes";
-            TestItem.DispatchDate = DateTime.Now;
-            TestItem.StockItem = "black cats";
-            TestItem.Price = 100;
-            //add the item to the test list
-            mOrdersList.Add(TestItem);
-        }
-
-        //private data member for the list
-        private List<clsOrders> mOrdersList;
+        List<clsOrders> mOrdersList = new List<clsOrders>();
+        private clsOrders mThisOrders;
 
         //public property for the address list
-        public List <clsOrders> OrderList
+        public List<clsOrders> OrdersList
         {
             get
             {
@@ -50,7 +25,7 @@ namespace ClassLibrary
                 //set the private data
                 mOrdersList = value;
             }
-        }    
+        }
         public int Count
         {
             get
@@ -61,9 +36,70 @@ namespace ClassLibrary
             set
             {
                 //we shall worry about this later
+
             }
         }
-        public clsOrders ThisOrders { get; set; }
-        
+        //public property for this orders
+        public clsOrders ThisOrders
+        {
+            get
+            {
+                //return the private data
+                return mThisOrders;
+            }
+            set
+            {
+                //set the private data
+                mThisOrders = value;
+            }
+        }
+        public clsOrdersCollection()
+        {
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount = 0;
+            //object for the data connect
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrders_SelectAll");
+            //get the count of records
+            RecordCount = DB.Count;
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank order
+                clsOrders AnOrders = new clsOrders();
+                //read in the fields ofr the current record
+                AnOrders.Dispatched = Convert.ToBoolean(DB.DataTable.Rows[Index]["Dispatched"]);
+                AnOrders.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
+                AnOrders.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                AnOrders.StockItem = Convert.ToString(DB.DataTable.Rows[Index]["StockItem"]);
+                AnOrders.Description = Convert.ToString(DB.DataTable.Rows[Index]["Description"]);
+                AnOrders.DispatchDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["DispatchDate"]);
+                AnOrders.Price = Convert.ToDouble(DB.DataTable.Rows[Index]["Price"]);
+                //add the record to the private data member
+                mOrdersList.Add(AnOrders);
+                //point at the next record
+                Index++;
+            }
+        }
+        public int Add()
+        {
+            //adds a record to the database based on the values of mThisOrders
+            //connects to a database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerName", mThisOrders.CustomerName);
+            DB.AddParameter("@Description", mThisOrders.Description);
+            DB.AddParameter("@Price", mThisOrders.Price);
+            DB.AddParameter("@Dispatched", mThisOrders.Dispatched);
+            DB.AddParameter("@DispatchDate", mThisOrders.DispatchDate);
+            DB.AddParameter("@StockItem", mThisOrders.StockItem);
+            DB.AddParameter("@OrderID", mThisOrders.OrderID);
+
+            //execute the query returning the priomary key
+            return DB.Execute("sproc_tblOrders_Insert");
+        }
     }
 }
