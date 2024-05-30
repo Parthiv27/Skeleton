@@ -40,7 +40,7 @@ namespace ClassLibrary
         }
 
         // Public property for ThisStaff
-        public clsStaff ThisStaff 
+        public clsStaff ThisStaff
         {
             get
             {
@@ -65,23 +65,25 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure to fetch data
             DB.Execute("sproc_tblStaff_SelectAll");
+            //populate the array list with the datatable
+            PopulateArray(DB);
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process 
             while (Index < RecordCount)
             {
                 //create a blank staff object
-                clsStaff staff = new clsStaff();
+                clsStaff Anstaff = new clsStaff();
                 //read in the fields for the current record
-                staff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
-                staff.FirstName = Convert.ToString(DB.DataTable.Rows[Index]["FirstName"]);
-                staff.LastName = Convert.ToString(DB.DataTable.Rows[Index]["LastName"]);
-                staff.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
-                staff.HireDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["HireDate"]); ;
-                staff.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
-                staff.Salary = Convert.ToDecimal(DB.DataTable.Rows[Index]["Salary"]);
+                Anstaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                Anstaff.FirstName = Convert.ToString(DB.DataTable.Rows[Index]["FirstName"]);
+                Anstaff.LastName = Convert.ToString(DB.DataTable.Rows[Index]["LastName"]);
+                Anstaff.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                Anstaff.HireDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["HireDate"]); ;
+                Anstaff.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                Anstaff.Salary = Convert.ToDecimal(DB.DataTable.Rows[Index]["Salary"]);
                 //add the record to the private data members
-                mStaffList.Add(staff);
+                mStaffList.Add(Anstaff);
                 //move to the next record
                 Index++;
             }
@@ -99,7 +101,7 @@ namespace ClassLibrary
             DB.AddParameter("@HireDate", mThisStaff.HireDate);
             DB.AddParameter("@Active", mThisStaff.Active);
             DB.AddParameter("@Salary", mThisStaff.Salary);
-            
+
             //exeute the query returnig the primary key value
             return DB.Execute("sproc_tblStaff_Insert");
         }
@@ -134,5 +136,53 @@ namespace ClassLibrary
 
 
         }
+
+        public void ReportByFirstName(string FirstName)
+        {
+            //filters the record based on a full or partial first name
+            //connect to the databases
+            clsDataConnection DB = new clsDataConnection();
+            //send the firstname paramter to the database
+            DB.AddParameter("@FirstName", FirstName);
+            //excute the store procedure
+            DB.Execute("sproc_tblStaff_FilterByFirstName");
+            //populate the array list with the datatable
+            PopulateArray(DB);
+
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data in the paramter DB
+            //variable for index
+            Int32 Index = 0;
+            //varible to store the record count
+            Int32 RecordCount = 0;
+            //get the count of records
+            RecordCount =  DB.Count;
+            //clear the private array list
+            mStaffList = new List<clsStaff>();
+            //while there are records to process 
+            while (Index < RecordCount)
+            {
+                //create a blank staff object
+                clsStaff Anstaff = new clsStaff();
+                //read in the fields for the current record
+                Anstaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                Anstaff.FirstName = Convert.ToString(DB.DataTable.Rows[Index]["FirstName"]);
+                Anstaff.LastName = Convert.ToString(DB.DataTable.Rows[Index]["LastName"]);
+                Anstaff.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                Anstaff.HireDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["HireDate"]); ;
+                Anstaff.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                Anstaff.Salary = Convert.ToDecimal(DB.DataTable.Rows[Index]["Salary"]);
+                //add the record to the private data members
+                mStaffList.Add(Anstaff);
+                //move to the next record
+                Index++;
+
+            }
+        }
     }
 }
+
+

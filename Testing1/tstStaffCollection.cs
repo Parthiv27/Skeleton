@@ -197,11 +197,68 @@ namespace Testing1
             //now find the record
             Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
             //test to see that the record was not found
-            Assert.IsFalse( Found );
-     
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // Populate AllStaff with all records (by passing an empty string to load all records)
+            AllStaff.ReportByFirstName("");
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a balnk string(should retuen all record);
+            FilteredStaff.ReportByFirstName("");
+            //test to see that the two value are the same
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameNoneFound()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a first name that doesnt exits
+            FilteredStaff.ReportByFirstName("YYY YYY");
+            //test to see that there are no record
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a first name that exists in your dataset
+            FilteredStaff.ReportByFirstName("Harry");
+            //check the correct number of records found
+            if (FilteredStaff.Count == 2)
+            {
+                //check the record if the first record is 47
+                if (FilteredStaff.StaffList[0].StaffId != 47)
+                {
+                    OK = false;
+                }
+                //check to see that the second record is 90
+                if (FilteredStaff.StaffList[1].StaffId != 90)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are the expected records
+            Assert.IsTrue(OK);
         }
     }
 }
+
 
 
 
