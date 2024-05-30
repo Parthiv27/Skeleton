@@ -441,54 +441,9 @@ namespace Testing3
 
         // VALID Daterestocked tests
 
-
         [TestMethod]
-
         public void DaterestockedExtremeMin()
         {
-
-            clsStock AnStock = new clsStock();
-
-            String Error = "";
-
-            DateTime TestDate;
-            
-            TestDate = DateTime.Now.Date.AddYears(-100);
-
-            string Daterestocked = TestDate.ToString();
-
-            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-        }
-
-        [TestMethod]
-
-        public void DaterestockedMinLessOne()
-        {
-
-            clsStock AnStock = new clsStock();
-
-            String Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date.AddDays(-1);
-
-            string Daterestocked = TestDate.ToString();
-
-            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-        }
-
-        [TestMethod]
-
-        public void DaterestockedMin()
-        {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
@@ -497,7 +452,48 @@ namespace Testing3
 
             TestDate = DateTime.Now.Date;
 
-            string Daterestocked = TestDate.ToString();
+            TestDate = TestDate.AddYears(-100);
+
+            String Daterestocked = TestDate.ToString();
+
+            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DaterestockedMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddDays(-1);
+
+            String Daterestocked = TestDate.ToString();
+
+            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void DaterestockedMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;            
+
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -505,64 +501,68 @@ namespace Testing3
 
         }
 
-        [TestMethod]
 
+        [TestMethod]
         public void DaterestockedMinPlusOne()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
 
             DateTime TestDate;
 
-            TestDate = DateTime.Now.Date.AddDays(1);
+            TestDate = DateTime.Now.Date;
 
-            string Daterestocked = TestDate.ToString();
+            TestDate = TestDate.AddDays(1);
+
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
         [TestMethod]
-
         public void DaterestockedExtremeMax()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
 
             DateTime TestDate;
 
-            TestDate = DateTime.Now.Date.AddYears(100);
+            TestDate = DateTime.Now.Date;
 
-            string Daterestocked = TestDate.ToString();
+            TestDate = TestDate.AddYears(100);
+
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
         [TestMethod]
 
         public void DaterestockedInvalidData()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
 
-            string Daterestocked = "this is not a date";
+            string Daterestocked = "This is not a date!";
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
+
+       
+
+
+
+
+
 
 
 

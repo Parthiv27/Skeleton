@@ -24,6 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
 
@@ -121,21 +122,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("StockList.aspx");
     }
 
+
     void DisplayStock()
     {
         clsStockCollection Stock = new clsStockCollection();
 
         Stock.ThisStock.Find(StockId);
 
-        txtStockId.Text = Stock.ThisStock.StockId.ToString();  
-        txtProducttype.Text = Stock.ThisStock.Producttype.ToString();
-        txtSize.Text = Stock.ThisStock.Size.ToString();
+        txtStockId.Text = Stock.ThisStock.StockId.ToString();
         chkDiscontinued.Checked = Stock.ThisStock.Discontinued;
         chkRestockneeded.Checked = Stock.ThisStock.Restockneeded;
+        txtProducttype.Text = Stock.ThisStock.Producttype.ToString();
+        txtSize.Text = Stock.ThisStock.Size.ToString();
         txtDaterestocked.Text = Stock.ThisStock.Daterestocked.ToString();
         txtStockQuantity.Text = Stock.ThisStock.StockQuantity.ToString();
 
     }
 
-        
+
 }

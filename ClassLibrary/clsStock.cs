@@ -166,7 +166,29 @@ namespace ClassLibrary
                 Error = Error + "The Size must be less than 10 characters : ";
             }
 
+            //date method
 
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(Daterestocked);
+
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
 
             if (StockQuantity.Length == 0)
             {
@@ -178,26 +200,7 @@ namespace ClassLibrary
                 Error = Error + "The Stock Quantity must be less than 50 characters : ";
             }
 
-            DateTime DateComp = DateTime.Now.Date;
-            try
-            {
 
-                DateTemp = Convert.ToDateTime(Daterestocked);
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    Error += "The date cannot be in the past : ";
-
-                }
-
-                if (DateTemp > DateTime.Now.Date)
-                {
-                    Error = Error + "The date cannot be in the future : ";
-                }
-            }
-            catch (FormatException)
-            {
-                Error = Error + "The date was not a valid date : ";
-            }
 
             return Error;
         }

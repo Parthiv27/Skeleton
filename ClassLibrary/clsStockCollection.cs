@@ -13,32 +13,12 @@ namespace ClassLibrary
         clsStock mThisStock = new clsStock();   
         public clsStockCollection()
         {
-            Int32 Index = 0;
-
-            Int32 RecordCount = 0;
-           
+            
             clsDataConnection DB = new clsDataConnection();
 
             DB.Execute("sproc_tblStock_SelectAll");
 
-            RecordCount = DB.Count;
-           
-            while (Index < RecordCount)
-            {
-                clsStock AnStock = new clsStock();
-
-                AnStock.StockId = Convert.ToInt32(DB.DataTable.Rows[Index]["StockId"]);
-                AnStock.Producttype = Convert.ToString(DB.DataTable.Rows[Index]["Producttype"]);
-                AnStock.Size = Convert.ToString(DB.DataTable.Rows[Index]["Size"]);
-                AnStock.StockQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["StockQuantity"]);
-                AnStock.Restockneeded = Convert.ToBoolean(DB.DataTable.Rows[Index]["Restockneeded"]);
-                AnStock.Daterestocked = Convert.ToDateTime(DB.DataTable.Rows[Index]["Daterestocked"]);
-                AnStock.Discontinued = Convert.ToBoolean(DB.DataTable.Rows[Index]["Discontinued"]);
-
-                mStockList.Add(AnStock);
-
-                Index++;
-            }
+            PopulateArray(DB);          
 
         }
 
@@ -109,6 +89,17 @@ namespace ClassLibrary
             DB.Execute("sproc_tblStock_Delete");
         }
 
+        public void ReportByProducttype(string Producttype)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@Producttype", Producttype);
+
+            DB.Execute("sproc_tblStock_FilterByProducttype");
+
+            PopulateArray(DB);
+        }
+
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -122,6 +113,35 @@ namespace ClassLibrary
             DB.AddParameter("@Discontinued", mThisStock.Discontinued);
 
             DB.Execute("sproc_tblStock_Update");
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+
+            Int32 RecordCount;
+
+            RecordCount = DB.Count;
+
+            mStockList = new List<clsStock>();
+
+
+            while (Index < RecordCount)
+            {
+                clsStock AnStock = new clsStock();
+
+                AnStock.StockId = Convert.ToInt32(DB.DataTable.Rows[Index]["StockId"]);
+                AnStock.Producttype = Convert.ToString(DB.DataTable.Rows[Index]["Producttype"]);
+                AnStock.Size = Convert.ToString(DB.DataTable.Rows[Index]["Size"]);
+                AnStock.StockQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["StockQuantity"]);
+                AnStock.Restockneeded = Convert.ToBoolean(DB.DataTable.Rows[Index]["Restockneeded"]);
+                AnStock.Daterestocked = Convert.ToDateTime(DB.DataTable.Rows[Index]["Daterestocked"]);
+                AnStock.Discontinued = Convert.ToBoolean(DB.DataTable.Rows[Index]["Discontinued"]);
+
+                mStockList.Add(AnStock);
+
+                Index++;
+            }
         }
 
 

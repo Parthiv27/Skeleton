@@ -30,7 +30,7 @@ namespace Testing3
 
             clsStock Testitem = new clsStock();
 
-            Testitem.StockId = 1040;
+            Testitem.StockId = 1;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -59,7 +59,7 @@ namespace Testing3
             clsStock TestStock = new clsStock();
 
 
-            TestStock.StockId = 1040;
+            TestStock.StockId = 1;
             TestStock.Producttype = "sneaker";
             TestStock.Size = "8";
             TestStock.StockQuantity = 5;
@@ -84,7 +84,7 @@ namespace Testing3
 
             clsStock Testitem = new clsStock();
 
-            Testitem.StockId = 1040;
+            Testitem.StockId = 1;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -108,7 +108,7 @@ namespace Testing3
 
             Int32 PrimaryKey = 0;
 
-            Testitem.StockId = 1040;
+            Testitem.StockId = 1;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -176,7 +176,7 @@ namespace Testing3
 
             Int32 PrimaryKey = 0;
 
-            Testitem.StockId = 1040;
+            Testitem.StockId = 1;
             Testitem.Producttype = "sneaker";
             Testitem.Size = "8";
             Testitem.StockQuantity = 5;
@@ -198,6 +198,63 @@ namespace Testing3
 
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+
+        public void ReportByProducttypeMethodOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+
+            clsStockCollection FilteredStocks = new clsStockCollection();
+
+            FilteredStocks.ReportByProducttype("");
+
+            Assert.AreEqual(AllStocks.Count, FilteredStocks.Count);
+        }
+
+        [TestMethod]
+        public void ReportByProducttypeNoneFound()
+        {
+            
+            clsStockCollection FilteredStocks = new clsStockCollection();
+
+            FilteredStocks.ReportByProducttype("xxxxx");
+
+            Assert.AreEqual(0, FilteredStocks.Count);
+        }
+
+        [TestMethod]
+
+        public void ReportByProducttypeTestDataFound()
+        {
+            clsStockCollection FilterStocks = new clsStockCollection();
+
+            Boolean OK = true;
+
+            FilterStocks.ReportByProducttype("slipper");
+
+            if (FilterStocks.Count == 2)
+            {
+
+                if (FilterStocks.StockList[0].StockId != 46)
+                {
+                    OK = false;
+                }
+                if (FilterStocks.StockList[1].StockId != 47)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            
+            Assert.IsTrue(OK);
+        }
+        
+
+        
 
 
 
