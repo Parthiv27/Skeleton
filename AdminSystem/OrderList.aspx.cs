@@ -23,7 +23,7 @@ public partial class _1_List : System.Web.UI.Page
         //create an instance of the orders collection
         clsOrdersCollection AnOrders = new clsOrdersCollection();
         //set the date source to list of orders in the collection
-        lstOrderList.DataSource = AnOrders.OrderList;
+        lstOrderList.DataSource = AnOrders.OrdersList;
         //set the name of the primary key
         lstOrderList.DataValueField = "OrderID";
         //set the data field to display
@@ -33,6 +33,11 @@ public partial class _1_List : System.Web.UI.Page
     }
 
     protected void lstOrderList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
 
     }
