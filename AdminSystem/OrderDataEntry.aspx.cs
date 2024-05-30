@@ -38,6 +38,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrders.CustomerName = CustomerName;
             //capture stock item
             AnOrders.StockItem = StockItem;
+            //capture description 
+            AnOrders.Description = Description;
             //capture price
             AnOrders.Price = Convert.ToDouble(Price);
             //capture Dispatch date

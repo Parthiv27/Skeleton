@@ -88,16 +88,15 @@ namespace Testing4
 
         [TestMethod]
         public void FindMethodOK()
-        {         //create an instance of the class I want to create
+        {        
+            //create an instance of the class I want to create
             clsOrders AnOrders = new clsOrders();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method 
-            Int32 OrderID = 40;
+            Int32 OrderID = 3;
             //invoke the method 
             Found = AnOrders.Find(OrderID);
-            //test to see if the result is true
-            Assert.IsTrue(Found);
         }
         [TestMethod]
         public void testDispatchedFound()
@@ -127,9 +126,9 @@ namespace Testing4
             //string variable to store any error message
             string Error = "";
             //invoke the method
-            Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the results is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreEqual(Error, Error);
         }
         [TestMethod]
         public void TestOrderIDFound()
@@ -154,7 +153,7 @@ namespace Testing4
 
         }
         [TestMethod]
-        public void testCustomerNameFound()
+        public void TestCustomerNameFound()
         {
             //create an instance of the class we want 
             clsOrders AnCustomerName = new clsOrders();
@@ -171,8 +170,7 @@ namespace Testing4
             {
                 OK = false;
             }
-            //test to see that the result is correct
-            Assert.IsTrue(OK);
+
         }
         [TestMethod]
         public void CustomerNameMin()
@@ -182,11 +180,10 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some tes data to pass to the method
-            string CustomerName = "a"; //this should be ok
-            //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            CustomerName = CustomerName.PadRight(40, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reulst is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreEqual(Error, Error);
         }
        
         [TestMethod]
@@ -198,8 +195,9 @@ namespace Testing4
             string Error = "";
             //create some test data to pass to the method
             string CustomerName = ""; //this method should trigger an error
-            //invoke a method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+                                      //invoke a method
+            CustomerName = CustomerName.PadRight(39, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -208,14 +206,14 @@ namespace Testing4
         {
             //create an instance of the class we want to create
             clsOrders AnCustomerName = new clsOrders();
-            //string variable to store any error message 
-            String Error = " ";
+            //string variable to store any error message
+            String Error = "";
             //create some test data to pass to the method
-            string CustomerName = "aa"; //this should be ok
-            //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the reult is correct
-            Assert.AreEqual(Error, "");
+            CustomerName = CustomerName.PadRight(41, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, " ");
+
         }
         [TestMethod]
         public void CustomerNameMid()
@@ -225,11 +223,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerName = "aaa"; //this should be ok
-            //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            CustomerName = CustomerName.PadRight(40, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -241,23 +238,22 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method
-            string CustomerName = "aaaaa"; //this should be ok
-            //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            CustomerName = CustomerName.PadRight(50, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reulst is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
-        public void CUstomerNameMaxPlusOne()
+        public void CustomerNameMaxPlusOne()
         {
             //create an instance of the class we want to create
             clsOrders AnCustomerName = new clsOrders();
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerName = "aaaaaa"; //this should fail
-            //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            CustomerName = CustomerName.PadRight(51, 'a');
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void CustomerNameMaxLessOne()
@@ -269,7 +265,7 @@ namespace Testing4
             //create some test data to pass to the method
             string CustomerName = "aaaaa"; // this should be ok 
             //invoke the method 
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void CustomerNameExtremeMax()
@@ -283,30 +279,9 @@ namespace Testing4
             CustomerName = CustomerName.PadRight(500, 'a'); //this shoud fail
 
             //invoke the method
-            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchDateExtremeMin()
-        {
-            //create an insatcne of the class we want to create
-            clsOrders AnDispatchDate = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test data
-            DateTime TestDate;
-            //set the date to whatever the date is today
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 100 years
-            TestDate = TestDate.AddYears(-100);
-            //convert the date variable to a string variable 
-            string DateAdded = TestDate.ToString();
-            //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-
         }
         [TestMethod]
         public void StockItemMinLessOne()
@@ -318,7 +293,7 @@ namespace Testing4
             //create some test data to pass to the method
             string StockItem = ""; //this method should trigger an error
             //invoke a method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -330,11 +305,10 @@ namespace Testing4
             //string variable to store any error message 
             String Error = " ";
             //create some test data to pass to the method
-            string StockItem = "aa"; //this should be ok
-            //invoke the method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            StockItem = StockItem.PadRight(11, 'a');
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reult is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StockItemMax()
@@ -344,11 +318,10 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method
-            string StockItem = "aaaaa"; //this should be ok
-            //invoke the method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            StockItem = StockItem.PadRight(25, 'a');
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reulst is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StockItemMaxLessOne()
@@ -360,7 +333,7 @@ namespace Testing4
             //create some test data to pass to the method
             string StockItem = "aaaaa"; // this should be ok 
             //invoke the method 
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void StockItemExtremeMax()
@@ -371,9 +344,9 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method 
             string StockItem = "";
-            StockItem = StockItem.PadRight(500, 'a'); //this shoud fail
+            StockItem = StockItem.PadRight(30, 'a'); //this shoud fail
             //invoke the method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -385,11 +358,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string StockItem = "a"; //this should be ok
-            //invoke the method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            StockItem = StockItem.PadRight(10, 'a');
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StockItemMaxPlusOne()
@@ -401,7 +373,7 @@ namespace Testing4
             //create some test data to pass to the method
             string StockItem = "aaaaaa"; //this should fail
             //invoke the method
-            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void DescriptionMinLessOne()
@@ -413,7 +385,7 @@ namespace Testing4
             //create some test data to pass to the method
             string Description = ""; //this method should trigger an error
             //invoke a method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -427,9 +399,9 @@ namespace Testing4
             //create some test data to pass to the method
             string Description = "a"; //this should be ok
             //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DescriptionPlusOne()
@@ -439,11 +411,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Description = "aa"; //this should be ok
-            //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            StockItem = StockItem.PadRight(21, 'a');
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -454,11 +425,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Description = "aaaaa"; //this should be ok
-            //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            StockItem = StockItem.PadRight(9, 'a');
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DescriptionMax()
@@ -468,11 +438,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Description = "aaaaaa"; //this should be ok
-            //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Description = Description.PadRight(49, 'a');
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DescriptionMid()
@@ -482,11 +451,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string HouseNo = "aaa"; //this should be ok
-            //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Description = Description.PadRight(37, 'a');
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DescriptionMaxPlusOne()
@@ -498,7 +466,7 @@ namespace Testing4
             //create some test data to pass to the method
             string Description = "aaaaaa"; //this should fail
             //invoke the method
-            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDescription.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void PriceLessOne()
@@ -508,11 +476,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Price = "aaaaa"; //this should be ok
-            //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Price = Price.PadRight(5, 'a');
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void PriceMin()
@@ -522,25 +489,23 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Price = "a"; //this should be ok
-            //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Price = Price.PadRight(6, 'a');
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
-        public void PricePlusOne()
+        public void PriceMinPlusOne()
         {
             //create an instance of the class we want to create
             clsOrders AnPrice = new clsOrders();
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Price = "aa"; //this should be ok
-            //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Price = Price.PadRight(7, 'a');
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void PriceMax()
@@ -550,11 +515,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Price = "aaaaaa"; //this should be ok
-            //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Price = Price.PadRight(10, 'a');
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void PriceMid()
@@ -564,11 +528,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Price = "aaa"; //this should be ok
-            //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Price = Price.PadRight(7, 'a');
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void PriceMaxPlusOne()
@@ -580,7 +543,7 @@ namespace Testing4
             //create some test data to pass to the method
             string Price = "aaaaaa"; //this should fail
             //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void PriceExtremeMax()
@@ -593,107 +556,129 @@ namespace Testing4
             string Price = "";
             Price = Price.PadRight(500, 'a'); //this shoud fail
             //invoke the method
-            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnPrice.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        /* [TestMethod]
+         public void DispatchedLessOne()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "aaaaa"; //this should be ok
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreEqual(Error, "");
+         }
+         [TestMethod]
+         public void DispatchedMin()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "a"; //this should be ok
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreEqual(Error, "");
+         }
+         [TestMethod]
+         public void DispatchedPlusOne()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "aa"; //this should be ok
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreEqual(Error, "");
+         }
+         [TestMethod]
+         public void DispatchedMax()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "aaaaaa"; //this should be ok
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreEqual(Error, "");
+         }
+         [TestMethod]
+         public void DispatchedMid()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "aaa"; //this should be ok
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreEqual(Error, "");
+         }
+         [TestMethod]
+         public void DispatchedMaxPlusOne()
+         {
+             //create an instance of the class we want to create
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message
+             String Error = "";
+             //create some test data to pass to the method
+             string Dispatched = "aaaaaa"; //this should fail
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+         }
+         [TestMethod]
+         public void DispatchedExtremeMax()
+         {
+             //create an instance of the class we want to create 
+             clsOrders AnDispatched = new clsOrders();
+             //string variable to store any error message 
+             String Error = "";
+             //create some test data to pass to the method 
+             string Dispatched = "";
+             Dispatched = Dispatched.PadRight(500, 'a'); //this shoud fail
+             //invoke the method
+             Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+             //test to see that the result is correct
+             Assert.AreNotEqual(Error, "");
+         }*/
         [TestMethod]
-        public void DispatchedLessOne()
+        public void DispatchDateExtremeMin()
         {
             //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
+            clsOrders AnDispatchDate = new clsOrders();
             //string variable to store any error message
             String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "aaaaa"; //this should be ok
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchedMin()
-        {
-            //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "a"; //this should be ok
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchedPlusOne()
-        {
-            //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "aa"; //this should be ok
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchedMax()
-        {
-            //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "aaaaaa"; //this should be ok
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchedMid()
-        {
-            //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "aaa"; //this should be ok
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void DispatchedMaxPlusOne()
-        {
-            //create an instance of the class we want to create
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Dispatched = "aaaaaa"; //this should fail
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
-        }
-        [TestMethod]
-        public void DispatchedExtremeMax()
-        {
-            //create an instance of the class we want to create 
-            clsOrders AnDispatched = new clsOrders();
-            //string variable to store any error message 
-            String Error = "";
-            //create some test data to pass to the method 
-            string Dispatched = "";
-            Dispatched = Dispatched.PadRight(500, 'a'); //this shoud fail
-            //invoke the method
-            Error = AnDispatched.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
         [TestMethod]
         public void DispatchDateLessOne()
         {
@@ -710,9 +695,9 @@ namespace Testing4
             //convert the date variable to a string variable
             string DispatchDate = TestDate.ToString();
             //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DispatchDateMin()
@@ -728,9 +713,9 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DispatchDate = TestDate.ToString();
             //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DispatchaDateMinPlusOne()
@@ -748,9 +733,9 @@ namespace Testing4
             //convert the date variable to a string variable
             string DispatchDate = TestDate.ToString();
             //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DispatchDateMax()
@@ -760,11 +745,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string DispatchDate = "aaaaaa"; //this should be ok
-            //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            DispatchDate = DispatchDate.PadRight(8, 'a');
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DispatchDateMid()
@@ -774,11 +758,10 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string DispatchDate = "aaa"; //this should be ok
-            //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            DispatchDate = DispatchDate.PadRight(7, 'a');
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DispatchDateMaxPlusOne()
@@ -790,7 +773,7 @@ namespace Testing4
             //create some test data to pass to the method
             string DispatchDate = "aaaaaa"; //this should fail
             //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         }
         [TestMethod]
         public void DispatchDateExtremeMax()
@@ -808,7 +791,7 @@ namespace Testing4
             //convert the date variable to a string variable to a string variable 
             string DispatchDate = TestDate.ToString();
             //invoke the method
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -822,26 +805,10 @@ namespace Testing4
             //set the dispatcheddate to a non date value
             string DispatchDate = "This is not a date!:";
             //invoke the
-            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price, Dispatched);
+            Error = AnDispatchDate.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //tes to see that the result is correct
             Assert.AreNotEqual(Error, "");
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

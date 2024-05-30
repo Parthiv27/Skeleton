@@ -12,11 +12,11 @@ namespace ClassLibrary
         {
             get
             {
-                return Price;
+                return mPrice;
             }
             set
             {
-                Price = value;
+                mPrice = value;
             }
         }
 
@@ -25,11 +25,11 @@ namespace ClassLibrary
         {
             get
             {
-                return Dispatched;
+                return mDispatched;
             }
             set
             {
-                Dispatched = value;
+                mDispatched = value;
             }
         }
 
@@ -39,12 +39,12 @@ namespace ClassLibrary
         {
             get
             {
-                return DispatchDate;
+                return mDispatchDate;
 
             }
             set
             {
-                DispatchDate = value;
+                mDispatchDate = value;
             }
         }
         //private data for member for the Order id property
@@ -65,44 +65,44 @@ namespace ClassLibrary
             }
         }
 
-        private string mCustomerName;
-        public string CustomerName
+        private String mCustomerName;
+        public String CustomerName
         {
             get
             {
-                return CustomerName;
+                return mCustomerName;
             }
             set
             {
-                CustomerName = value;
+                mCustomerName = value;
             }
         }
-        private string mStockItem;
-        public string StockItem
+        private String mStockItem;
+        public String StockItem
         {
             get
             {
-                return StockItem;
+                return mStockItem;
             }
             set
             {
-                StockItem = value;
+                mStockItem = value;
             }
         }
-        private string mDescription;
-        public string Description
+        private String mDescription;
+        public String Description
         {
             get
             {
-                return Description;
+                return mDescription;
             }
             set
             {
-                Description = value;
+                mDescription = value;
             }
         }
 
-        public string name { get; set; }
+       
 
         /********* FIND METHOD ************/
         public bool Find(int OrderID)
@@ -110,49 +110,84 @@ namespace ClassLibrary
             //create an instance of data connection
             clsDataConnection DB = new clsDataConnection();
             //add the paramater for the item ID to search for
-            DB.AddParameter("@itemId", OrderID);
+            DB.AddParameter("@OrderID", OrderID);
             //add execute the stored procedure
-            DB.Execute("sproc_tblOrders_SelectAll");
+            DB.Execute("sproc_tblOrders_FilterByOrderID");
+            //sproc_tblOrders_SelectAll
             // if one record is found (there should be either one or zero
             if (DB.Count == 1)
             {
-                mDispatched = Convert.ToBoolean(DB.DataTable.Rows[0]["Dispached"]);
+                //copy the data from the database to the private data members
                 mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
                 mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
                 mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
                 mDispatchDate = Convert.ToDateTime(DB.DataTable.Rows[0]["DispatchDate"]);
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mStockItem = Convert.ToString(DB.DataTable.Rows[0]["StockItem"]);
+                mDispatched = Convert.ToBoolean(DB.DataTable.Rows[0]["Dispatched"]);
+                //return everything that works OK
+                return true;
             }
-            //set the private data members to the test data value 
-            mOrderID = 21;
-            mDispatchDate = Convert.ToDateTime("02/06/2004");
-            //always return true
-            return true;
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
         }
 
-        public string Valid(string customerName, string stockItem, string dispatchDate, string description, string price)
+        //VALIDATION METHOD
+
+        public string Valid(string CustomerName, string StockItem, string DispatchDate, string Description, string Price)
         {
             //create a string variable to store the error 
             String Error = "";
             //create a temporary variable to store the date values
             DateTime DateTemp;
-            //if the house is blank
+            //if the Customername is blank
             if (CustomerName.Length == 0)
             {
                 //record the error
                 Error = Error + "The Customer name  may not be blank : ";
             }
-            // if the price is greater than 100
-            if (CustomerName.Length > 60)
+            
+            if (CustomerName.Length < 30)
+            {
+                
+                    Error = Error + "The customer name must be more than 40 characters :";
+            }
+            if (CustomerName.Length > 50)
             {
                 //record the Error
-                Error = Error + "The customer name must be less than 60 ; ";
+                Error = Error + "The customer name must be less than 50 : ";
             }
-            //copy the dateadded value to the datetemp variable
-            DateTemp = Convert.ToDateTime(DispatchDate);
-            //check to see if the date is less than todays date 
-            if (DateTemp < DateTime.Now.Date)
+
+            //create an instance of DateTime to compare with the datetemp
+            //in th if stataement
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+
+                //copy the DispatchDate value to the datetemp variable
+                DateTemp = Convert.ToDateTime(DispatchDate);
+                if (DateTemp < DateComp) //compare DispatchDate with date
+                {
+                    //record the no error
+                    Error = Error + "the date cannot be in the past :";
+                }
+                //chech to see if the date is greate that todays date
+                if (DateTemp > DateComp) 
+                {
+                    //record the erro
+                    Error = Error + "the date cannot be in the future :";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date :";
+            }
+
             {
                 Error = Error + "The date cannot be in the past : ";
             }
@@ -161,25 +196,38 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The stock Item must not be blank:";
             }
-            if (StockItem.Length > 60)
+            if (StockItem.Length > 25)
             {
                 //record the error
-                Error = Error + "The stock item must be less than 60 characters:";
+                Error = Error + "The stock item must be less than 25 characters:";
+            }
+            if (StockItem.Length < 10)
+            {
+                //record the error
+                Error = Error + "The StockItem must be more than 10 characters :";
             }
             if (Description.Length == 0)
             {
                 //record the error
                 Error = Error + "The Description must not be blank:";
             }
-            if (Description.Length > 60)
+            if (Description.Length > 50)
             {
                 //record the error
-                Error = Error + "The description must be less than 100 characters:";
+                Error = Error + "The description must be less than 50 characters:";
+            }
+            if (Description.Length < 25)
+            {
+                //record the error
+                Error = Error + "the description must be more than 30 characters :";
+            }
+            if (Price.Length == 0)
+            {
+                //record the error
+                Error = Error + "the price amount must not be black";
             }
             //return any error messages
             return Error;
         }
-
-
     }
 }
