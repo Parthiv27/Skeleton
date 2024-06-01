@@ -7,6 +7,14 @@ namespace Testing2
     [TestClass]
     public class tstCustomer
     {
+        //good test data
+        //create some test data to pass the method
+        string FirstName = "Trever";
+        string SurName = "MARTIN";
+        string Email = "trever2@gmail.com";
+        string Address = "20 Evington road";
+        string DateJoined = DateTime.Now.ToShortDateString();
+       
         [TestMethod]
         public void InstanceOk()
 
@@ -257,12 +265,196 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void ValidMethokOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void FirstNameMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = ""; //this should trigger an error
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "T"; //this should be ok
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "TT"; //this should be ok
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "TTTTTTTTTTTTTTTTTTTTTTTT"; //this should be ok
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "TTTTTTTTTTTTTTTTTTTTTTTTT"; //this should be ok
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "TTTTTTTTTTTTT"; //this should be ok
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FirstName = "TTTTTTTTTTTTTTTTTTTTTTTTTT"; //this should fail
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void FirstNameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            FirstName = FirstName.PadRight(500, 'T'); //this should fail
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void DateJoinedExtremeMin()
+        {  
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable 
+            string DateJoined = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateJoinedMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable 
+            string DateJoined = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateJoinedMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable 
+            string DateJoined = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateJoinedMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable 
+            string DateJoined = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void DateJoinedExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever it is plus 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable 
+            string DateJoined = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void DateJoinedInvalidData()
+        {  clsCustomer ACustomer = new clsCustomer();
+           String Error = "";
+            //set the dateAdded to a non date value
+            string DateJoined = "This is not a date!";
+            //invoke the method
+            Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+            Assert.AreNotEqual(Error, "");
+        }
 
 
 
-    }
+        }
 
 }
+
 
 
 

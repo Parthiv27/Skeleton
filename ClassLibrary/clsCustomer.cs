@@ -122,6 +122,41 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string firstName, string email, string surName, string address, object dateJoined)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the first name is blank
+            if (firstName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The First Name may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (firstName.Length > 24)
+            {
+                //record the error
+                Error = Error + "The First Name should not be more than 24 characters";
+            }
+            //copy the dateadded value to the datetemp variable
+            DateTemp = Convert.ToDateTime(DateJoined);
+            //check to see if the date is then todays date
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+            //check to see if the date is greater than todays date
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the future : ";
+            }
+            
+            return Error;
+        }
     }
 }
 
