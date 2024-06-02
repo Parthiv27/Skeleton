@@ -136,29 +136,68 @@ namespace ClassLibrary
                 Error = Error + "The First Name may not be blank : ";
             }
             //if the first name is greater than 24 characters
-            if (firstName.Length > 24)
+            if (firstName.Length > 12)
             {
                 //record the error
                 Error = Error + "The First Name should not be more than 24 characters";
             }
-            //copy the dateadded value to the datetemp variable
-            DateTemp = Convert.ToDateTime(DateJoined);
-            //check to see if the date is then todays date
-            if (DateTemp < DateTime.Now.Date)
-            {
-                Error = Error + "The date cannot be in the past : ";
-            }
-            //check to see if the date is greater than todays date
-            if (DateTemp > DateTime.Now.Date)
+            if (surName.Length == 0)
             {
                 //record the error
-                Error = Error + "The date cannot be in the future : ";
+                Error = Error + "The SurName may not be blank : ";
             }
-            
-            return Error;
+            //if the first name is greater than 24 characters
+            if (surName.Length > 12)
+            {
+                //record the error
+                Error = Error + "The SurName should not be more than 12 characters";
+            }
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Email may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (email.Length > 25)
+            {
+                //record the error
+                Error = Error + "The Email should not be more than 25 characters";
+            }
+            if (email.Length < 9) 
+            {
+                //record the error if the value is less than 9 it will be an error
+                Error = Error + "The Email should consist of more than 9 characters";
+            }
+            if (address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Address may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (address.Length > 20)
+            {
+                //record the error
+                Error = Error + "The Addresss should not be more than 24 characters";
+            }
+            //copy the dateadded value to the datetemp variable
+            DateTemp = Convert.ToDateTime(dateJoined);
+                //check to see if the date is then todays date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+                return Error;
+            }
         }
     }
-}
+
 
 
 
