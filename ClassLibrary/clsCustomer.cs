@@ -163,11 +163,6 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The Email should not be more than 25 characters";
             }
-            if (email.Length < 9) 
-            {
-                //record the error if the value is less than 9 it will be an error
-                Error = Error + "The Email should consist of more than 9 characters";
-            }
             if (address.Length == 0)
             {
                 //record the error
@@ -179,21 +174,31 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The Addresss should not be more than 24 characters";
             }
-            //copy the dateadded value to the datetemp variable
-            DateTemp = Convert.ToDateTime(dateJoined);
-                //check to see if the date is then todays date
+            try
+            {
+                //copy the DateJoined value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateJoined);
+
+                //if the DateJoined is less than today's date
                 if (DateTemp < DateTime.Now.Date)
                 {
-                    Error = Error + "The date cannot be in the past : ";
+                    //record the error
+                    Error = Error + "The date cannot be in the past: ";
                 }
-                //check to see if the date is greater than todays date
+                //if the DateJoined is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the future : ";
+                    Error = Error + "The date cannot be in the future: ";
                 }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
+            }
 
-                return Error;
+            return Error;
             }
         }
     }

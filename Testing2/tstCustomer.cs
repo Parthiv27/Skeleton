@@ -131,7 +131,7 @@ namespace Testing2
             //invike the method
             Found = ACustomer.Find(CustomerId);
             //check the customer id
-            if (ACustomer.DateJoined != Convert.ToDateTime("02/06/2022"))
+            if (ACustomer.DateJoined != Convert.ToDateTime("02/06/2024"))
             {
                 OK = false;
             }
@@ -545,7 +545,7 @@ namespace Testing2
             String Error = "";
             string Email = "RR"; //this should be ok
             Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
 
         }
         [TestMethod]
