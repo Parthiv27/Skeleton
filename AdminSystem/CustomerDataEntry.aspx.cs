@@ -18,38 +18,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //crreate a new instance of cls customer
         clsCustomer ACustomer = new clsCustomer();
         //capture the first name
-        ACustomer.FirstName = txtFirstName.Text;
+        string FirstName = txtFirstName.Text;
         //capture the surname
-        ACustomer.SurName = txtSurName.Text;
+        string SurName = txtSurName.Text;
         //Capture email
-        ACustomer.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
         //capture Address
-        ACustomer.Address = txtAddress.Text;
+        string Address = txtAddress.Text;
         //capture the verified checkbox
-        ACustomer.Active = chkActive.Checked;
+        string Active = chkActive.Text;
         //capture date joined
-        ACustomer.DateJoined = Convert.ToDateTime(DateTime.Now);
-        //store the first name in the session
-        Session["ACustomer"] = ACustomer;
+        string DateJoined = txtDateJoined.Text;
+        //store the erre messages
+        string Error = "";
         //navigate to the view page 
-        Response.Redirect("CustomerViewer.aspx");
-    }
-
-    protected void btnFind_Click(object sender, EventArgs e)
-    {
-        clsCustomer ACustomer = new clsCustomer();
-        Int32 CustomerId;
-        Boolean Found = false;
-        CustomerId = Convert.ToInt32(txtCustomerId.Text);
-        Found = ACustomer.Find(CustomerId);
-        if (Found == true)
+        Error = ACustomer.Valid(FirstName, Email, SurName, Address, DateJoined);
+        if (Error == "")
         {
-            txtSurName.Text = ACustomer.SurName;
-            txtFirstName.Text = ACustomer.FirstName;
-            txtEmail.Text = ACustomer.Email;
-            txtAddress.Text = ACustomer.Address;
-            txtDateJoined.Text = ACustomer.DateJoined.ToString();
-            chkActive.Checked = ACustomer.Active;
+            //capture the first name
+            ACustomer.FirstName = FirstName;
+            ACustomer.SurName = SurName;
+            ACustomer.Address = Address;
+            ACustomer.Email = Email;
+            ACustomer.DateJoined = Convert.ToDateTime(DateJoined);
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
         }
     }
 }
+    
+
+   
