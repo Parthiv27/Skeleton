@@ -23,6 +23,7 @@
         <p>
             <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 246px; top: 495px; position: absolute" Text="Clear Filter" />
         </p>
+        <asp:Button ID="btnReturntoMainMenu" runat="server" OnClick="btnReturntoMainMenu_Click" style="z-index: 1; left: 451px; top: 499px; position: absolute" Text="Return to Main Menu" />
     </form>
     </body>
 </html>

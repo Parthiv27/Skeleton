@@ -119,6 +119,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        Response.Redirect("StaffList.aspx");
 
     }
 
@@ -147,5 +148,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtSalary.Text = AnStaff.Salary.ToString();
 
         }
+    }
+
+    protected void ReturntoMainMenu_Click(object sender, EventArgs e)
+    {
+        //rediret to the main page 
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
