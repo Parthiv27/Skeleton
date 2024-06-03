@@ -19,7 +19,7 @@
         </p>
         <asp:Label ID="lblError" runat="server" ForeColor="#FF3300" style="z-index: 1; left: 427px; top: 228px; position: absolute; height: 24px" Text="[lblError]"></asp:Label>
         <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 181px; top: 304px; position: absolute; height: 28px; width: 61px" Text="Login" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 271px; top: 306px; position: absolute; height: 28px; width: 61px" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 271px; top: 306px; position: absolute; height: 28px; width: 61px" Text="Cancel" OnClick="btnCancel_Click" />
     </form>
 </body>
 </html>
