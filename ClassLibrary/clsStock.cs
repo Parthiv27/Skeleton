@@ -200,8 +200,6 @@ namespace ClassLibrary
                 Error = Error + "The Stock Quantity must be less than 50 characters : ";
             }
 
-
-
             return Error;
         }
 
