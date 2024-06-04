@@ -7,7 +7,7 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 396px;
+            height: 470px;
         }
     </style>
 </head>
@@ -32,6 +32,7 @@
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 109px; top: 354px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 419px; top: 38px; position: absolute" Text="Find" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 20px; top: 285px; position: absolute"></asp:Label>
+        <asp:Button ID="btnreturn" runat="server" OnClick="btnreturn_Click" style="z-index: 1; left: 27px; top: 409px; position: absolute" Text="Return to Main Menu" />
     </form>
 </body>
 </html>

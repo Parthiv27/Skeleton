@@ -13,6 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Button ID="btnReturntoMainMenu" runat="server" OnClick="ReturntoMainMenu_Click" style="z-index: 1; left: 303px; top: 427px; position: absolute" Text="Return to Main Menu" />
         <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 25px; top: 43px; position: absolute" Text="StaffID" width="79px"></asp:Label>
         <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 178px; top: 37px; position: absolute" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtLastName" runat="server" style="z-index: 1; left: 180px; top: 135px; position: absolute" width="128px" height="22px"></asp:TextBox>

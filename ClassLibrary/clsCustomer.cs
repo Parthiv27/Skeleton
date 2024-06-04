@@ -122,8 +122,87 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string firstName, string email, string surName, string address, object dateJoined)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the first name is blank
+            if (firstName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The First Name may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (firstName.Length > 12)
+            {
+                //record the error
+                Error = Error + "The First Name should not be more than 24 characters";
+            }
+            if (surName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The SurName may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (surName.Length > 12)
+            {
+                //record the error
+                Error = Error + "The SurName should not be more than 12 characters";
+            }
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Email may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (email.Length > 25)
+            {
+                //record the error
+                Error = Error + "The Email should not be more than 25 characters";
+            }
+            if (address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Address may not be blank : ";
+            }
+            //if the first name is greater than 24 characters
+            if (address.Length > 20)
+            {
+                //record the error
+                Error = Error + "The Addresss should not be more than 24 characters";
+            }
+            try
+            {
+                //copy the DateJoined value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateJoined);
+
+                //if the DateJoined is less than today's date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                //if the DateJoined is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
+            }
+
+            return Error;
+            }
+        }
     }
-}
+
 
 
 
