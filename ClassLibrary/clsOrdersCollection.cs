@@ -101,5 +101,22 @@ namespace ClassLibrary
             //execute the query returning the priomary key
             return DB.Execute("sproc_tblOrders_Insert");
         }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisOrders
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@OrderID", mThisOrders.OrderID);
+            DB.AddParameter("@CustomerName", mThisOrders.CustomerName);
+            DB.AddParameter("@Description", mThisOrders.Description);
+            DB.AddParameter("StockItem", mThisOrders.StockItem);
+            DB.AddParameter("@DispatchDate", mThisOrders.DispatchDate);
+            DB.AddParameter("@Dispatched", mThisOrders.Dispatched);
+            DB.AddParameter("@Price", mThisOrders.Price);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrders_Update");
+        }
     }
 }

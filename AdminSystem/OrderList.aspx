@@ -12,7 +12,9 @@
         </div>
         <asp:ListBox ID="lstOrderList" runat="server" Height="251px" Width="374px"></asp:ListBox>
         <p>
-            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" Width="38px" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 74px; top: 307px; position: absolute; width: 38px; height: 25px" Text="Edit" />
+            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 55px; position: absolute; top: 357px" Text="[lblError]"></asp:Label>
         </p>
     </form>
 </body>

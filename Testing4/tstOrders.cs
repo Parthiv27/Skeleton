@@ -99,7 +99,7 @@ namespace Testing4
             Found = AnOrders.Find(OrderID);
         }
         [TestMethod]
-        public void testDispatchedFound()
+        public void TestDispatchedFound()
         {
             //create an instance of the class we want to create
             clsOrders AnDispatchDate = new clsOrders();

@@ -8,9 +8,36 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with the page level scope
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the order to be processed
+        OrderID = Convert.ToInt32(Session["OrderID"]);
+        if (IsPostBack == false)
+        {
+            //if this is the not new record
+            if(OrderID != -1)
+            {
+                //display the current data for the reord
+                DisplayOrders();
+            }
+        }
+    }
+    void DisplayOrders()
+    {
+        //create an instance of the class we want to create
+        clsOrdersCollection OrderBook = new clsOrdersCollection();
+        //find the record to update
+        OrderBook.ThisOrders.Find(OrderID);
+        //display the data for the record
+        txtOrderID.Text = OrderBook.ThisOrders.OrderID.ToString();
+        txtCustomerName.Text = OrderBook.ThisOrders.CustomerName.ToString();
+        txtStockItem.Text = OrderBook.ThisOrders.StockItem.ToString();
+        txtDescription.Text = OrderBook.ThisOrders.Description.ToString();
+        txtDispatchtDate.Text = OrderBook.ThisOrders.DispatchDate.ToString();
+        txtPrice.Text = OrderBook.ThisOrders.Price.ToString();
+        chkDispatched.Checked = OrderBook.ThisOrders.Dispatched;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -34,6 +61,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnOrders.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
         if (Error == "")
         {
+            //capture OrderID
+            AnOrders.OrderID = OrderID; //dont miss this
             //capture customer name
             AnOrders.CustomerName = CustomerName;
             //capture stock item
@@ -44,9 +73,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrders.Price = Convert.ToDouble(Price);
             //capture Dispatch date
             AnOrders.DispatchDate = Convert.ToDateTime(DispatchDate);
-            //store the order in the session object
-            Session["AnOrders"] = AnOrders;
-            //navigate to the view page
+            //capture dispatched
+            AnOrders.Dispatched = chkDispatched.Checked;
+            //create a new instance of the order collection
+            clsOrdersCollection OrdersList = new clsOrdersCollection();
+            //if this is a new record i.e OrderID = -1 then add the data
+            if (OrderID == -1)
+            {
+                //set the this order property
+                OrdersList.ThisOrders = AnOrders;
+                //add the new record
+                OrdersList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                OrdersList.ThisOrders.Find(OrderID);
+                //set the ThisOrders property
+                OrdersList.ThisOrders = AnOrders;
+                //update the record
+                OrdersList.Update();
+            }
+            //redirect back to the list page
             Response.Redirect("OrderViewer.aspx");
         }
         else
