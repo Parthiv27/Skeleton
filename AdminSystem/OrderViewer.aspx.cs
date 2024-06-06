@@ -14,9 +14,9 @@ public partial class _1Viewer : System.Web.UI.Page
         //create a new instance of clsOrders
         clsOrders AnCustomerName = new clsOrders();
         //get data from session objective
-        AnCustomerName = (clsOrders)Session["AnFirstname"];
+        AnCustomerName = (clsOrders)Session["AnCustomerName"];
         //display the ID for this entry
-        Response.Write (AnCustomerName. StockItem);
+        Response.Write (AnCustomerName.StockItem);
         Response.Write(AnCustomerName.DispatchDate);
         Response.Write(AnCustomerName.Dispatched);
     }
