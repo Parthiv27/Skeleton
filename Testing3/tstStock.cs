@@ -646,7 +646,7 @@ namespace Testing3
 
             String Error = "";
 
-            string Size = "";
+            string Size = "aaaaaaaaaaa";
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -675,6 +675,7 @@ namespace Testing3
             String Error = "";
 
             string Size = "";
+            Size = Size.PadRight(100, 'a');
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -778,12 +779,28 @@ namespace Testing3
             String Error = "";
 
             string StockQuantity = "";
-            StockQuantity = StockQuantity.PadRight(50, 'a');
+            StockQuantity = StockQuantity.PadRight(25, 'a');
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void StockQuantityExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string StockQuantity = "";
+            StockQuantity = StockQuantity.PadRight(500, 'a');
+
+            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
 
     }
 
