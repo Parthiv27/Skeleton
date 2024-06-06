@@ -96,7 +96,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 OrdersList.Update();
             }
             //redirect back to the list page
-            Response.Redirect("OrderViewer.aspx");
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
@@ -116,7 +116,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AnOrders"] = AnOrders;
 
         //navigate to the view page
-        Response.Redirect("OrderViewer");
+        Response.Redirect("OrderList.aspx");
 
 
     }
@@ -149,5 +149,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
 
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderLisr.aspx");
+    }
 }
 

@@ -36,8 +36,7 @@
             <asp:Label ID="lblDescription" runat="server" style="z-index: 1; left: 10px; top: 311px; position: absolute; width: 78px" Text="Description:"></asp:Label>
             <asp:TextBox ID="txtDescription" runat="server" style="z-index: 1; left: 130px; top: 310px; position: absolute; width: 394px;"></asp:TextBox>
    
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 151px; top: 461px; position: absolute; height: 26px; width: 60px;" Text="Cancel" />
-               <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 52px; top: 461px; position: absolute" Text="OK" height="26px" width="60px" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 463px; position: absolute; height: 26px; width: 60px; left: 164px;" Text="Cancel" OnClick="btnCancel_Click" />
 
 
 
@@ -53,6 +52,15 @@
        
 
         
+                    </p>
+
+
+
+            <p style="z-index: 1; left: 10px; top: 98px; position: absolute; height: 19px; width: 1712px">
+               <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 39px; top: 362px; position: absolute" Text="OK" height="26px" width="60px" />
+
+
+
                     </p>
 
 

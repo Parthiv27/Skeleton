@@ -8,14 +8,17 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderID = Convert.ToInt32(Session["OrderID"]);
         //If this is the first time page is displayed
         if (!IsPostBack == false)
         {
             //update the list box
             DisplayOrders();
         }
+
 
     }
     void DisplayOrders()
@@ -34,15 +37,10 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataBind();
     }
  
-    protected void lstOrderList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         //store -1 into the session object to indicate this is a new record 
-        Session["OrderID"] = -1;
+        Session["OrderID"] = 0;
         //redirect to the data entry page 
         Response.Redirect("OrderDataEntry.aspx");
     }
@@ -79,7 +77,7 @@ public partial class _1_List : System.Web.UI.Page
             //store the data in the session object
             Session["OrderID"] = OrderID;
             //redirect to the delete page 
-            Response.Redirect("OrderConfirmDelete");
+            Response.Redirect("OrderConfirmDelete.aspx");
         }
         else //if no record has been selected
         {
@@ -122,10 +120,5 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "CustomerName";
         //bind the data to the list
         lstOrderList.DataBind();
-    }
-
-    protected void lstOrderList_SelectedIndexChanged1(object sender, EventArgs e)
-    {
-
     }
 }
