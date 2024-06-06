@@ -186,16 +186,19 @@ namespace Testing4
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
         [TestMethod]
-        public void ReportByCustomerNameMethodOK()
+        public void ReporrtByCustomerNameMethodOK()
         {
-            //create an instance of the class we want toc reate 
+            // create an instance of the class we want to create
             clsOrdersCollection AllOrders = new clsOrdersCollection();
+            // Populate AllStaff with all records (by passing an empty string to load all records)
+            AllOrders.ReportByCustomerName("");
             //create an instance of the filtered data
             clsOrdersCollection FilteredOrders = new clsOrdersCollection();
-            //apply all blank string (it should return all records)
+            //apply a balnk string(should retuen all record);
             FilteredOrders.ReportByCustomerName("");
-            //testto see that the values are the same
+            //test to see that the two value are the same
             Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
         }
         [TestMethod]

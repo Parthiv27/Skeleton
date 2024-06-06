@@ -180,7 +180,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some tes data to pass to the method
-            CustomerName = CustomerName.PadRight(40, 'a');
+            CustomerName = CustomerName.PadRight(5, 'a');
             Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reulst is correct
             Assert.AreEqual(Error, Error);
@@ -196,7 +196,7 @@ namespace Testing4
             //create some test data to pass to the method
             string CustomerName = ""; //this method should trigger an error
                                       //invoke a method
-            CustomerName = CustomerName.PadRight(39, 'a');
+            CustomerName = CustomerName.PadRight(4, 'a');
             Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -209,7 +209,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            CustomerName = CustomerName.PadRight(41, 'a');
+            CustomerName = CustomerName.PadRight(6, 'a');
             Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, " ");
@@ -223,7 +223,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            CustomerName = CustomerName.PadRight(40, 'a');
+            CustomerName = CustomerName.PadRight(7, 'a');
             Error = AnCustomerName.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -305,7 +305,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = " ";
             //create some test data to pass to the method
-            StockItem = StockItem.PadRight(11, 'a');
+            StockItem = StockItem.PadRight(6, 'a');
             Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reult is correct
             Assert.AreNotEqual(Error, "");
@@ -318,7 +318,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method
-            StockItem = StockItem.PadRight(25, 'a');
+            StockItem = StockItem.PadRight(30, 'a');
             Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the reulst is correct
             Assert.AreNotEqual(Error, "");
@@ -344,7 +344,7 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method 
             string StockItem = "";
-            StockItem = StockItem.PadRight(30, 'a'); //this shoud fail
+            StockItem = StockItem.PadRight(500, 'a'); //this shoud fail
             //invoke the method
             Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
@@ -358,7 +358,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            StockItem = StockItem.PadRight(10, 'a');
+            StockItem = StockItem.PadRight(5, 'a');
             Error = AnStockItem.Valid(CustomerName, StockItem, DispatchDate, Description, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");

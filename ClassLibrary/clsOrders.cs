@@ -151,10 +151,10 @@ namespace ClassLibrary
                 Error = Error + "The Customer name  may not be blank : ";
             }
             
-            if (CustomerName.Length < 30)
+            if (CustomerName.Length < 5)
             {
                 
-                    Error = Error + "The customer name must be more than 40 characters :";
+                    Error = Error + "The customer name must be more than 5 characters :";
             }
             if (CustomerName.Length > 50)
             {
@@ -187,10 +187,6 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The date was not a valid date :";
             }
-
-            {
-                Error = Error + "The date cannot be in the past : ";
-            }
             if (StockItem.Length == 0)
             {
                 //record the error
@@ -201,10 +197,10 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The stock item must be less than 25 characters:";
             }
-            if (StockItem.Length < 10)
+            if (StockItem.Length < 2)
             {
                 //record the error
-                Error = Error + "The StockItem must be more than 10 characters :";
+                Error = Error + "The StockItem must be more than 5 characters :";
             }
             if (Description.Length == 0)
             {
@@ -216,10 +212,10 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The description must be less than 50 characters:";
             }
-            if (Description.Length < 25)
+            if (Description.Length < 10)
             {
                 //record the error
-                Error = Error + "the description must be more than 30 characters :";
+                Error = Error + "the description must be more than 10 characters :";
             }
             if (Price.Length == 0)
             {

@@ -10,6 +10,7 @@ namespace ClassLibrary
     public class clsOrdersCollection
     {
         List<clsOrders> mOrdersList = new List<clsOrders>();
+       
         private clsOrders mThisOrders;
 
         //public property for the address list
@@ -66,6 +67,7 @@ namespace ClassLibrary
             //populate the array list with the data table
             PopulateArray(DB);
             //get the count of records
+            /*
             RecordCount = DB.Count;
             //while there are records to process
             while (Index < RecordCount)
@@ -84,7 +86,7 @@ namespace ClassLibrary
                 mOrdersList.Add(AnOrders);
                 //point at the next record
                 Index++;
-            }
+            }*/
         }
         public int Add()
         {
