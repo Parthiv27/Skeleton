@@ -9,7 +9,18 @@
 <body>
     <form id="form1" runat="server">
         <div>
+        <asp:ListBox ID="lstOrderList" runat="server" Height="251px" Width="374px"></asp:ListBox><asp:Button runat="server" Text="Return To Main Menu" ID="btnMainMenu" OnClick="btnMainMenu_Click" style="z-index: 1; left: 401px; top: 430px; position: absolute; height: 25px"></asp:Button>
         </div>
+        <p>
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 73px; top: 305px; position: absolute; width: 38px; height: 25px; right: 1728px;" Text="Edit" />
+            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 54px; position: absolute; top: 508px; height: 23px;" Text="[lblError]"></asp:Label>
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; top: 306px; position: absolute; height: 25px; width: 49px; left: 135px" Text="Delete" />
+        </p>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" style="z-index: 1; left: 9px; top: 307px; position: absolute; height: 25px; width: 39px; right: 1791px" />
+        <asp:Label ID="lblEnterCustomerName" runat="server" style="z-index: 1; left: 30px; top: 366px; position: absolute; right: 1577px; height: 54px" Text="Enter a Customer Name:"></asp:Label>
+        <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; top: 373px; position: absolute; left: 272px; height: 17px; width: 124px"></asp:TextBox>
+        <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 26px; top: 435px; position: absolute" Text="Apply Filter" />
+        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 188px; top: 432px; position: absolute; height: 26px" Text="Clear Filter" width="100px" />
     </form>
 </body>
 </html>

@@ -192,8 +192,8 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(hireDate);
                 if (DateTemp < DateComp) //compare dateAdded with Date
                 {
-                    //record the error
-                    Error = Error + "The date cannot be in the past : ";
+                    //record the  no error
+                    Error = Error + " The date cannot be in the past :";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateComp)
@@ -246,11 +246,6 @@ namespace ClassLibrary
             }
             //return any error messages
             return Error;
-        }
-
-        public string Valid(string firstName, string lastName, string email, DateTime hireDate, object salary)
-        {
-            throw new NotImplementedException();
         }
     }
 }

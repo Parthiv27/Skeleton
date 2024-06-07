@@ -9,11 +9,11 @@ namespace Testing3
     {
 
         string Producttype = "sneaker";
-        string Size = "3";
-        string StockQuantity = "4";
-        string Restockneeded = "true";
+        string Size = "8";
+        string StockQuantity = "5";
+        
         string Daterestocked = DateTime.Now.ToShortDateString();
-        string Discontinued = "false";
+        
 
 
 
@@ -127,7 +127,7 @@ namespace Testing3
 
             Boolean Found = false;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
@@ -147,11 +147,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.StockId != 6)
+            if (AnStock.StockId != 1)
             {
                 OK = false;
             }
@@ -169,11 +169,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Producttype != "slides")
+            if (AnStock.Producttype != "sneaker")
             {
                 OK = false;
             }
@@ -192,11 +192,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Size != "2")
+            if (AnStock.Size != "8")
             {
                 OK = false;
             }
@@ -214,11 +214,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.StockQuantity != 10)
+            if (AnStock.StockQuantity != 5)
             {
                 OK = false;
             }
@@ -236,7 +236,7 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
@@ -259,11 +259,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Daterestocked != Convert.ToDateTime("15/04/2024"))
+            if (AnStock.Daterestocked != Convert.ToDateTime("28/05/2024"))
             {
                 OK = false;
             }
@@ -283,11 +283,11 @@ namespace Testing3
 
             Boolean OK = true;
 
-            Int32 StockId = 6;
+            Int32 StockId = 1;
 
             Found = AnStock.Find(StockId);
 
-            if (AnStock.Discontinued != true)
+            if (AnStock.Discontinued != false)
             {
                 OK = false;
             }
@@ -442,10 +442,8 @@ namespace Testing3
         // VALID Daterestocked tests
 
         [TestMethod]
-
         public void DaterestockedExtremeMin()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
@@ -456,19 +454,16 @@ namespace Testing3
 
             TestDate = TestDate.AddYears(-100);
 
-            string Daterestocked = TestDate.ToString();
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
         [TestMethod]
-
         public void DaterestockedMinLessOne()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
@@ -479,28 +474,26 @@ namespace Testing3
 
             TestDate = TestDate.AddDays(-1);
 
-            string Daterestocked = TestDate.ToString();
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
-        [TestMethod]
 
+        [TestMethod]
         public void DaterestockedMin()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
 
             DateTime TestDate;
 
-            TestDate = DateTime.Now.Date;
+            TestDate = DateTime.Now.Date;            
 
-            string Daterestocked = TestDate.ToString();
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -508,11 +501,10 @@ namespace Testing3
 
         }
 
-        [TestMethod]
 
+        [TestMethod]
         public void DaterestockedMinPlusOne()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
@@ -523,19 +515,16 @@ namespace Testing3
 
             TestDate = TestDate.AddDays(1);
 
-            string Daterestocked = TestDate.ToString();
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
         [TestMethod]
-
         public void DaterestockedExtremeMax()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
@@ -546,30 +535,37 @@ namespace Testing3
 
             TestDate = TestDate.AddYears(100);
 
-            string Daterestocked = TestDate.ToString();
+            String Daterestocked = TestDate.ToString();
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
 
         [TestMethod]
 
         public void DaterestockedInvalidData()
         {
-
             clsStock AnStock = new clsStock();
 
             String Error = "";
 
-            string Daterestocked = "this is not a date";
+            string Daterestocked = "This is not a date!";
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreNotEqual(Error, "");
-
         }
+
+       
+
+
+
+
+
+
+
+
 
         // VALID Size tests
 
@@ -650,7 +646,7 @@ namespace Testing3
 
             String Error = "";
 
-            string Size = "";
+            string Size = "aaaaaaaaaaa";
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -679,6 +675,7 @@ namespace Testing3
             String Error = "";
 
             string Size = "";
+            Size = Size.PadRight(100, 'a');
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
@@ -782,12 +779,28 @@ namespace Testing3
             String Error = "";
 
             string StockQuantity = "";
-            StockQuantity = StockQuantity.PadRight(50, 'a');
+            StockQuantity = StockQuantity.PadRight(25, 'a');
 
             Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
 
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void StockQuantityExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string StockQuantity = "";
+            StockQuantity = StockQuantity.PadRight(500, 'a');
+
+            Error = AnStock.Valid(Producttype, Size, Daterestocked, StockQuantity);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
 
     }
 
