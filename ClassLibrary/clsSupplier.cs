@@ -122,7 +122,15 @@ namespace ClassLibrary
             {
                 Error = Error +"Name must be smaller.";
             }
-            if(phone.Length <= 5)
+            if (email.Length == 0)
+            {
+                Error = Error + "Email cant be empty.";
+            }
+            if (email.Length >= 31)
+            {
+                Error = Error + "Email must be smaller.";
+            }
+            if (phone.Length <= 5)
             {
                 Error += "Please Enter a Valid Phone number.";
             }

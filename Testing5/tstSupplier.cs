@@ -213,7 +213,7 @@ namespace Testing5
             String Error = "";
             String SupplierName = "";
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -271,7 +271,7 @@ namespace Testing5
             String SupplierName = "";
             SupplierName = SupplierName.PadRight(21, 's');
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -295,7 +295,7 @@ namespace Testing5
             String SupplierName = "";
             SupplierName = SupplierName.PadRight(200, 's');
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -311,7 +311,7 @@ namespace Testing5
             String Error = "";
             String Phone = "12345";
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -366,7 +366,7 @@ namespace Testing5
             String Error = "";
             String Phone = "1234567891012135";
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -389,7 +389,102 @@ namespace Testing5
             String Phone = "";
             Phone = Phone.PadRight(100, '1');
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMin()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "s";
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
             Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "ss";
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Email = Email.PadRight(29, 's');
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMax()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Email = Email.PadRight(30, 's');
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Email = Email.PadRight(31, 's');
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMid()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Email = Email.PadRight(15, 's');
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            String Error = "";
+            String Email = "";
+            Email = Email.PadRight(300, 's');
+            Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
+            Assert.AreNotEqual(Error, "");
         }
 
         //////////////////////////// DateReg validation/////////////////////////////////
@@ -407,7 +502,7 @@ namespace Testing5
             string DateReg = TestDate.ToString();
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -421,7 +516,7 @@ namespace Testing5
 
             string DateReg = TestDate.ToString();
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -448,7 +543,7 @@ namespace Testing5
 
             string DateReg = TestDate.ToString();
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -462,7 +557,7 @@ namespace Testing5
 
             string DateReg = TestDate.ToString();
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -475,7 +570,7 @@ namespace Testing5
 
             string DateReg = "This is not a Valid Date Data Type.";
             Error = ASupplier.Valid(SupplierName, Email, Phone, DateReg, Active);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
     }
