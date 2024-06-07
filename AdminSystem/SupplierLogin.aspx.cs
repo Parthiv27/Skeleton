@@ -15,7 +15,7 @@ public partial class SupplierLogin : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        clsSupplierUser AnAdmin = new clsSupplierUser();
+        clsSupplierUser AnUser = new clsSupplierUser();
 
         string Username = txtUsername.Text;
         string Password = txtPassword.Text;
@@ -25,7 +25,11 @@ public partial class SupplierLogin : System.Web.UI.Page
         Username = Convert.ToString(txtUsername.Text);
         Password = Convert.ToString(txtPassword.Text);
 
-        Found = AnAdmin.FindUser(Username, Password);
+        Found = AnUser.FindUser(Username, Password);
+
+
+        Session["AnUser"] = AnUser;
+
         if (txtUsername.Text == "")
         {
             lblError.Text = "Enter User Name ";
@@ -47,6 +51,6 @@ public partial class SupplierLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

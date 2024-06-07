@@ -19,6 +19,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             {
                 DisplaySupplier();
             }
+
+            clsSupplierUser AnUser = new clsSupplierUser();
+            AnUser = (clsSupplierUser)Session["AnUser"];
+            Response.Write("Logged in as : " + AnUser.Username);
         }
     }
 
@@ -96,5 +100,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDateReg.Text = ASupplier.DateReg.ToString();
             chkActive.Checked = ASupplier.Active;
         }
+    }
+
+    protected void btnTeamMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("SupplierList.aspx");
     }
 }
