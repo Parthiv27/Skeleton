@@ -5,7 +5,7 @@ using ClassLibrary;
 namespace Testing5
 {
     [TestClass]
-    public class tstSupplierSupplier
+    public class tstSupplierUser
     {
         
             [TestMethod]
