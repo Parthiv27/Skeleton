@@ -54,7 +54,6 @@
     <Compile Include="tstSupplier.cs" />
     <Compile Include="tstSupplierCollection.cs" />
     <Compile Include="tstSupplierUser.cs" />
-    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
